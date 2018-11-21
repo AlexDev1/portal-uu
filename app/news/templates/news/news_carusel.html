@@ -1,0 +1,27 @@
+{% load pytils_dt thumbnail %}
+
+{%  if newsabout %}
+    <div class="row">
+        <span>Читайте также</span>
+        <div class="grid-articles carousel post-carousel" data-carousel-col="2" data-carousel-margins="0">
+    {% for news in newsabout %}
+    <article class="post-entry">{% thumbnail news.image "380x254" crop="center" as im %}
+        <a href="{{ news.get_absolute_url }}" class="post-image"><img alt="{{ news.name|truncatechars:100 }}" src="{{ im.url }}"></a>{% endthumbnail %}
+        <div class="post-entry-overlay">
+            <div class="post-entry-meta">
+                <div class="post-entry-meta-category">
+                    <span class="label label-default">{{ news.tags }}</span>
+                </div>
+                <div class="post-entry-meta-title">
+                    <h2><a href="{{ news.get_absolute_url }}">{{ news.name|truncatechars:100 }}</a></h2>
+                </div>
+                <span class="post-date"><i class="fa fa-clock-o"></i>{{ news.dt_mod|ru_strftime:"%d %B %Y, %A" }}</span>
+            </div>
+        </div>
+    </article>
+    {% endfor %}
+</div>
+<hr class="space">
+    </div>
+
+{% endif %}

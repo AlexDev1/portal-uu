@@ -1,0 +1,56 @@
+{% extends 'polo/layouts/__base.html' %}
+{% load pytils_dt %}
+{% block seo_title %}Новости образования поиск по тегу: {{ tag }}{{ block.super }}{% endblock seo_title %}
+{% block seo_meta %}
+    <meta name="keywords" content="Новости образования с тегом: {{ tag }}">
+    <meta name="description" content="Новости образования поиск по тегу: {{ tag }}: {% for object in object_list %}{{ object.name|truncatewords:5 }}, {% endfor %}">
+{% endblock seo_meta %}
+{% block page_title %}
+<!-- PAGE TITLE -->
+<section id="page-title" class="page-title-small  text-dark news-paralax-img" >
+	<div class="container">
+		<div class="page-title col-md-8">
+			<h1>Новости образования поиск по тегу: {{ tag }}</h1>
+			<span>С нашими новостями вы всегда будете в курсе последних событий в мире науки</span>
+		</div>
+		<div class="breadcrumb pull-left fancy col-md-4">
+			<ul>
+				<li><a href="/"><i class="fa fa-home"></i></a></li>
+                {% if year %}
+                    <li><a href="{% url 'news' %}">Новости</a></li>
+                    <li><a href="#">{{ year }}</a></li>
+                    <li class="active"><a href="#">{{ month|date:"F" }}</a></li>
+                {% else %}
+                    <li class=""><a href="{% url 'news' %}">Новости</a></li>
+                    <li class="active"><a href="#">поиск по тегу: {{ tag }}</a></li>
+                {% endif %}
+			</ul>
+		</div>
+	</div>
+</section>
+<!-- END: PAGE TITLE -->
+{% endblock page_title %}
+{% block content %}
+<!-- CONTENT -->
+<section class="content">
+	<div class="container background-light p-t-15">
+		<div class="row">
+			<!-- Blog post-->
+			<div class="post-content post-thumbnail col-md-9">
+                {% for object in object_list %}
+                {% include 'news/_item_news_thumbnail.html' %}
+                {% endfor %}
+			</div>
+			<!-- END: Blog post-->
+
+			<!-- Sidebar-->
+			{% include 'news/_sitebar.html' %}
+			<!-- END: Sidebar-->
+		</div>
+	</div>
+</section>
+<!-- END: SECTION -->
+{% endblock content %}
+{% block extra_js %}
+
+{% endblock extra_js %}

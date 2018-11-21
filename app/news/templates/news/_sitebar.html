@@ -1,0 +1,15 @@
+{% load banner_tags %}
+<aside class="sidebar sidebar-modern col-md-3">
+    {% banner_region 'NewsPage336x280' %}
+    {% include 'polo/widgets/newsletter.html' %}
+    {% include 'polo/widgets/blog-articles.html' %}
+    {% include 'polo/widgets/last_news.html' %}
+    {% include 'polo/widgets/widget-tags.html' %}
+    {% include 'polo/widgets/archive.html' %}
+    {% include "faq_widget.html" %}
+    {% include 'polo/widgets/categories.html' %}
+    {% include 'polo/widgets/blockquote.html' %}
+    <div data-spy="affix" class="widget hero clearfix widget-archive">
+        {% banner_region 'affix_240x400' %}
+    </div>
+</aside>

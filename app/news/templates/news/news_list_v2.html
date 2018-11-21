@@ -1,0 +1,211 @@
+{% extends 'layuots/__base.html' %}
+{% block content %}
+<!-- PAGE TITLE -->
+<section id="page-title" class="page-title-parallax page-title-center text-dark" style="background-image:url(images/parallax/page-title-parallax.jpg);">
+	<div class="container">
+		<div class="page-title col-md-8">
+			<h1>BLOG TIMELINE</h1>
+			<span>Work is easy when you have all tools around you!</span>
+		</div>
+		<div class="breadcrumb col-md-4">
+			<ul>
+				<li><a href="#"><i class="fa fa-home"></i></a>
+				</li>
+				<li><a href="#">Home</a>
+				</li>
+				<li><a href="#">Page title</a>
+				</li>
+				<li class="active"><a href="#">Page title version</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</section>
+<!-- END: PAGE TITLE -->
+
+<!-- CONTENT -->
+<section class="content">
+	<div class="container">
+		<div class="row">
+			<!-- News post-->
+			<div class="post-content post-modern col-md-9">
+				<div class="timeline">
+					<ul class="timeline-circles">
+                        {% regroup news by dt_mod|date as objects_by_day %}
+                        {% for itemnews in objects_by_day %}
+						<li class="timeline-date">{{ itemnews.grouper }}</li>
+                            {% for object in itemnews.list %}
+                            <li>
+                                <div class="timeline-block">
+                                    <!-- Blog image post-->
+                                    {% include 'news/_item_list_timeline.html' %}
+                                </div>
+                            </li>
+                            {% endfor %}
+						{% endfor %}
+					</ul>
+				</div>
+			</div>
+			<!-- END: Blog post-->
+
+			<!-- Sidebar-->
+			<div class="sidebar sidebar-modern col-md-3">
+				<!--widget newsletter-->
+				<div class="widget clearfix widget-newsletter">
+                                <form id="widget-subscribe-form-sidebar" action="include/subscribe-form.php" role="form" method="post" class="form-inline">
+                                    <h4 class="widget-title">Newsletter</h4>
+                                    <small>Stay informed on our latest news!</small>
+                                    <div class="input-group">
+                                        <input type="email" aria-required="true" name="widget-subscribe-form-email" class="form-control required email" placeholder="Enter your Email">
+                                        <span class="input-group-btn">
+                  <button type="submit" id="widget-subscribe-submit-button" class="btn btn-primary"><i class="fa fa-paper-plane"></i></button>
+                  </span> </div>
+                                </form>
+                                <script type="text/javascript">
+                                    jQuery("#widget-subscribe-form-sidebar").validate({
+                                        submitHandler: function(form) {
+                                            jQuery(form).ajaxSubmit({
+                                                dataType: 'json',
+                                                success: function(text) {
+                                                    if (text.response == 'success') {
+                                                        $.notify({
+                                                            message: "You have successfully subscribed to our mailing list."
+                                                        }, {
+                                                            type: 'success'
+                                                        });
+                                                        $(form)[0].reset();
+
+                                                    } else {
+                                                        $.notify({
+                                                            message: text.message
+                                                        }, {
+                                                            type: 'warning'
+                                                        });
+                                                    }
+                                                }
+                                            });
+                                        }
+                                    });
+
+                                </script>
+                            </div>
+				<!--end: widget newsletter-->
+
+				<!--widget tweeter-->
+				<div class="widget clearfix widget-tweeter">
+					<h4 class="widget-title">Recent Tweets</h4>
+					<ul class="list-tweets list-medium">
+						<li>I just closed a deal in 14 minutes on EchoSign eSignature solution <a href="https://t.co/LNw6ludJ3S">https://t.co/LNw6ludJ3S</a>
+							<span class="list-tweets-date">10 days ago</span>
+						</li>
+						<li>
+							I love Dropbox because Simple it is the best for saving all important files that worth! <a href="https://t.co/EQvlz88Xht ">https://t.co/EQvlz88Xht </a>
+							<span class="list-tweets-date">10 days ago</span>
+						</li>
+					</ul>
+				</div>
+				<!--end: widget tweeter-->
+
+				<!--widget tags -->
+				<div class="widget clearfix widget-tags">
+					<h4 class="widget-title">Tags</h4>
+					<div class="tags">
+						<a href="#">Design</a>
+						<a href="#">Portfolio</a>
+						<a href="#">Digital</a>
+						<a href="#">Branding</a>
+						<a href="#">HTML</a>
+						<a href="#">Clean</a>
+						<a href="#">Peace</a>
+						<a href="#">Love</a>
+						<a href="#">CSS3</a>
+						<a href="#">jQuery</a>
+					</div>
+				</div>
+				<!--end: widget tags -->
+				<!--widget archive-->
+				<div class="widget clearfix widget-archive">
+					<h4 class="widget-title">Archive</h4>
+					<ul class="list list-lines">
+						<li>Jun 2015 </li>
+						<li>May 2015 </li>
+						<li>Apr 2015 </li>
+						<li>Mar 2015 </li>
+					</ul>
+				</div>
+				<!--end: widget archive-->
+
+				<!--widget flickr-->
+				<div class="widget clearfix widget-flickr">
+					<h4 class="widget-title">Flickr feed</h4>
+					<div data-flickr-images="12" data-flickr-id="52617155@N08" class="flickr-widget"></div>
+				</div>
+				<!--end: widget flickr-->
+
+				<!--widget blog articles-->
+				<div class="widget clearfix widget-blog-articles">
+					<h4 class="widget-title">From our Blog</h4>
+					<ul class="list-posts list-medium">
+						<li><a href="#">Printing and typesetting</a>
+							<small>Jun 18 2015</small>
+						</li>
+						<li><a href="#">Lorem Ipsum has been the industry's</a><small>Jun 18 2015</small>
+						</li>
+						<li><a href="#">Ipsum and typesetting</a><small>Jun 18 2015</small>
+						</li>
+						<li><a href="#">Specimen book</a><small>Jun 18 2015</small>
+						</li>
+
+					</ul>
+				</div>
+				<!--end: widget blog articles-->
+
+				<!--widget categories-->
+				<div class="widget clearfix widget-categories">
+					<h4 class="widget-title">Our Services</h4>
+					<ul class="list list-arrow-icons">
+						<li> <a title="" href="#">Development </a> </li>
+						<li> <a title="" href="#">Branding </a> </li>
+						<li> <a title="" href="#">Marketing </a> </li>
+						<li> <a title="" href="#">Branding </a> </li>
+						<li> <a title="" href="#">Strategy solutions</a> </li>
+						<li> <a title="" href="#">Copywriting </a> </li>
+					</ul>
+				</div>
+				<!--end: widget categories-->
+
+				<!--widget contact us-->
+				<div class="widget clearfix widget-contact-us" style="background-image: url('images/world-map.png'); background-position: 50% 55px; background-repeat: no-repeat">
+					<h4 class="widget-title">Contact us</h4>
+					<ul class="list-large list-icons">
+						<li><i class="fa fa-map-marker"></i>
+							<strong>Address:</strong> 795 Folsom Ave, Suite 600
+							<br>San Francisco, CA 94107</li>
+						<li><i class="fa fa-phone"></i><strong>Phone:</strong> (123) 456-7890 </li>
+						<li><i class="fa fa-envelope"></i><strong>Email:</strong> <a href="mailto:first.last@example.com">first.last@example.com</a>
+						</li>
+						<li><i class="fa fa-clock-o"></i>Monday - Friday: <strong>08:00 - 22:00</strong>
+							<br>Saturday, Sunday: <strong>Closed</strong>
+						</li>
+					</ul>
+				</div>
+				<!--end: widget contact us-->
+
+				<!--widget blockquote -->
+				<div class="widget clearfix widget-blockquote">
+					<h4 class="widget-title">Blockquote widget</h4>
+					<blockquote class="blockquote-simple">
+						<p>Art is the only serious thing in the world. And the artist is the only person who is never serious.</p>
+						<small>by <cite>Oscar Wilde</cite></small>
+					</blockquote>
+				</div>
+				<!--end: widget blockquote -->
+
+			</div>
+			<!-- END: Sidebar-->
+		</div>
+	</div>
+</section>
+<!-- END: SECTION -->
+{% endblock content %}
+

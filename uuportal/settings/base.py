@@ -39,9 +39,11 @@ INSTALLED_APPS = [
     'import_export',
     'meta',
     'cookielaw',
+    'tagging',
 
     'common',
     'users',
+    'app.news',
 ]
 
 MIDDLEWARE = [
@@ -90,7 +92,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ru-RU'
 
 TIME_ZONE = 'UTC'
 

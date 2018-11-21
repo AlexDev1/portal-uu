@@ -1,0 +1,127 @@
+{% extends 'polo/layouts/__base.html' %}{% load pytils_dt thumbnail banner_tags django_bootstrap_breadcrumbs tagging_tags static %}
+
+{% block seo_title %}{% if object.seo_title %}{{ object.seo_title }}{% else %}{{ object.name }}{% endif %}{{ block.super }}{% endblock seo_title %}
+{% block seo_meta %}
+    {% if object.seo_meta %}
+        {{ object.seo_meta|safe }}
+    {% else %}
+        <meta name="keywords" content="новости, образования, вузов, колледжей, приказ образования, министерство , минобрнауки,  культуры,   лента ">
+        <meta name="description" content="{{object.description|truncatechars:165 }} Новости от {{ object.dt_mod|ru_strftime }}">
+    {% endif %}
+{% endblock seo_meta %}
+{% block extrahead %}
+    <meta property="og:url" content="{{ request.build_absolute_uri }}">
+    <meta property="og:description" content="{{ object.description }}">
+    <meta property="og:site_name" content="Учисьучись.рф">
+    <meta property="og:locale" content="ru_RU">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="{{ object.name }}">
+    <meta property="og:image" content="https://xn--h1aa0abgczd7be.xn--p1ai{{ object.image.url }}">
+    <meta property="article:section" content="Новости образования">
+    <meta property="article:published_time" content="{{ object.update_date|date:'c' }}">
+    <meta property="article:tag" content="{% tags_for_object object as tag_list  %}">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:creator" content="@EducatorY_org">
+    <meta name="twitter:title" content="{{ object.name }}">
+    <meta name="twitter:description" content="{{ object.description }}">
+    <meta name="twitter:image" content="https://xn--h1aa0abgczd7be.xn--p1ai{{ object.image.url }}">
+{% endblock extrahead %}
+{% block page_title %}
+    <!-- PAGE TITLE -->
+    <section id="page-title" class="page-title-small news-paralax-img">
+        <div class="container">
+            <div class="page-title col-md-8" data-animation="fadeInDown" data-animation-delay="300">
+                <header>Новости образования в России</header>
+
+            </div>
+            <div class="breadcrumb  fancy col-md-4" data-animation="fadeInDown" data-animation-delay="800">
+                {% block breadcrumbs %}
+                    {% breadcrumb  "Новости" 'news' %}
+                    {% breadcrumb  object.dt_mod|date:"Y/ F" "news_month" object.dt_mod|date:'Y' object.dt_mod|date:'m' %}
+                    {% breadcrumb  object.dt_mod|date:"d /D" ""  %}
+                    {% render_breadcrumbs %}
+                {% endblock breadcrumbs %}
+            </div>
+        </div>
+    </section>
+    <!-- END: PAGE TITLE -->
+{% endblock page_title %}
+
+{% block content %}
+    <section class="content">
+        <div class="container background-light p-t-15">
+            <div class="row">
+                <article class="post-content post-classic post-content-single col-md-9" itemscope itemtype="http://schema.org/Article">
+                    <meta itemprop="mainEntityOfPage" content="{{ request.build_absolute_uri }}" />
+
+                    <div class="post-item" >
+
+                        <h1 itemprop="headline">{{ object.name }}</h1>
+                        <span itemprop="description">{{ object.description }}</span>
+
+
+                        {% include "polo/widgets/_social_links.html" %}
+                        <figure class="post-image">
+                            <a href="#">
+                                {% thumbnail object.image "1000" as im %}
+                                    <img itemprop="image" src="{{ im.url }}" width="100%" alt="{{ object.name|truncatewords:'5' }}" title="{{ object.name|truncatewords:'5' }}" class="img-responsive">
+                                {% endthumbnail %}
+                            </a>
+                        </figure>
+                        <div class="row text-center">
+                             <iframe height="90" width="790" src="{% url 'siteedu-banner-news' %}"></iframe>
+                        </div>
+                        <div class="post-content-details">
+                            <div class="post-meta">
+                                <div class="post-date">
+                                    <span class="post-date-day"><time datetime="{{ object.update_date|date:'c' }}" pubdate>{{ object.dt_mod|ru_strftime:"%d %B %Y, %A" }}</time></span>
+                                    <meta itemprop="datePublished" content="{{ object.dt_mod|date:'c' }}"/>
+                                    <meta itemprop="dateModified" content="{{ object.update_date|date:'c' }}" />
+                                </div>
+                                <div class="post-comments">
+                                    <a href="#comments">
+                                        <i class="fa fa-comments-o"></i>
+                                        {% load comments %}
+                                        {% get_comment_count for object as cnt_comment %}
+                                        <span class="post-comments-number">{{ cnt_comment }}</span>
+                                    </a>
+                                </div>
+                                <div class="post-comments">
+                                    <a href="#">
+                                        <i class="fa fa-eye"></i>
+                                        <span class="post-comments-number">{{ object.show_count }}</span>
+                                    </a>
+                                </div>
+                                <div itemprop="publisher" itemscope itemtype="https://schema.org/Organization" class="hidden">
+                                    <div itemprop="logo" itemscope itemtype="https://schema.org/ImageObject">
+                                        <meta itemprop="url" content="https://xn--h1aa0abgczd7be.xn--p1ai/static/v.3/images/logo_min.png">
+                                        <meta itemprop="width" content="190">
+                                        <meta itemprop="height" content="90">
+                                    </div>
+                                    <meta itemprop="name" content="Учисьучись.рф">
+                                </div>
+                                <div itemprop="author" itemscope itemtype="https://schema.org/Organization" class="hidden">
+                                    <meta itemprop="name" content="Учисьучись.рф">
+                                </div>
+                                <div class="post-info">
+                                    <span class="post-autor">Опубликовал: <a href="#">{{ object.adm_changeusr.get_name_last }}</a></span>
+                                </div>
+                            </div>
+
+
+                            <div itemprop="articleBody" class="post-description">
+                                {{ object.content|safe }}
+                            </div>
+                        </div>
+
+
+                    </div>
+                    {% include 'news/news_carusel.html' %}
+                    {% include 'polo/widgets/comments.html' %}
+                </article>
+                {% include 'news/_sitebar.html' %}
+            </div>
+        </div>
+    </section>
+    <!-- END: SECTION -->
+{% endblock content %}

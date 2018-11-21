@@ -1,0 +1,77 @@
+{% extends 'base.html' %}{% load pytils_dt banner_tags tagging_tags %}
+{% block seo_title %}{% if request.page.title %}{{ request.page.title }}{% else %}{% if month %}Все новости образования за {{ month|date:"F"}}/{{ year }} года {% else %}Последние новости образования в России {% endif %}{% endif %}{% endblock seo_title %}
+{% block seo_meta %}
+    {% if request.page.meta %}
+        {{ request.page.meta|safe }}
+    {% else %}
+        {% tag_cloud_for_model news.News as tag_list with min_count=4 %}
+        <meta name="keywords" content="новости егэ образования {% for tag in tag_list %}{{ tag|cut:"'" }}{% if not forloop.last %} {% endif %}{% endfor %}">
+        <meta name="description" content="{% if month %}Последние новости образования за {{ month|date:"F"}}/{{ year }} года: {% for item in news|slice:"10" %}{{ item.name }}, {% endfor %}{% else %} Последние новости образования на {{ dt_today }} в сфере образования и науки: {% for item in news|slice:"10" %}{{ item.name }}{% if not forloop.last %}, {% else %}...{% endif %}{% endfor %}{% endif %}">
+    {% endif %}
+{% endblock seo_meta %}
+{% block page_title %}
+    <!-- PAGE TITLE -->
+    <section id="page-title" class="page-title-parallax  text-dark news-paralax-img" >
+        <div class="container">
+            <div class="page-title col-md-8">
+                <h1>{% block title %}{% if object.seo_title %}{{ object.seo_title }}{% else %}{{ object.name }}{% endif %}Новости образования{{ object.dt_mod|date:"F-Y"}}{% if show_year %} | {{ object.dt_mod|date:"Y" }}{% endif %}{% endblock title %}</h1>
+{#                <span>С нашими новостями вы всегда будете в курсе последних событий в мире науки</span>#}
+            </div>
+            <div class="breadcrumb pull-left fancy col-md-4">
+                <ul>
+                    <li><a href="/"><i class="fa fa-home"></i></a></li>
+                    {% if year %}
+                        <li><a href="{% url 'news' %}">Новости</a></li>
+                        <li><a href="#">{{ year }}</a></li>
+                        <li class="active"><a href="#">{{ month|date:"F" }}</a></li>
+                    {% else %}
+                        <li class="active"><a href="{% url 'news' %}">Новости</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </section>
+    <!-- END: PAGE TITLE -->
+{% endblock page_title %}
+{% block content %}
+    <!-- CONTENT -->
+    <section class="content">
+        <div class="container background-light p-t-15" >
+            <div class="row">
+                <!-- Blog post-->
+                <div class="post-content post-modern col-md-9">
+                    <div class="timeline timeline-colored">
+                        <ul class="timeline-circles">
+                            {% regroup news by dt_mod|ru_strftime:"%d %B %Y, %A" as objects_by_day %}
+                            {% for itemnews in objects_by_day %}
+                                <li class="timeline-date">{{ itemnews.grouper }}</li>
+                                {% for object in itemnews.list %}
+                                    <li>
+                                        <div class="timeline-block">
+                                            <!-- Blog image post-->
+                                            {% include 'news/_item_list_timeline.html' %}
+                                        </div>
+                                    </li>
+                                {% endfor %}
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    {% if more_button %}
+                        <div class="block block-news-teaser-load col-xs-12">
+                            <a href="#"><span class="more">Показать еще</span><span> ↓ </span></a>
+                        </div>
+                    {% endif %}
+                </div>
+                <!-- END: Blog post-->
+
+                <!-- Sidebar-->
+                {% include 'news/_sitebar.html' %}
+                <!-- END: Sidebar-->
+            </div>
+        </div>
+    </section>
+    <!-- END: SECTION -->
+{% endblock content %}
+{% block extra_js %}
+
+{% endblock extra_js %}

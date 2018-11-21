@@ -1,0 +1,13 @@
+{% load fb_versions pytils_dt %}
+{% regroup news by dt_mod|ru_strftime:"%d %B %Y, %A" as objects_by_day %}
+{% for itemnews in objects_by_day %}
+    <li class="timeline-date">{{ itemnews.grouper }}</li>
+    {% for object in itemnews.list %}
+        <li>
+            <div class="timeline-block">
+                <!-- Blog image post-->
+                {% include 'news/_item_list_timeline.html' %}
+            </div>
+        </li>
+    {% endfor %}
+{% endfor %}
