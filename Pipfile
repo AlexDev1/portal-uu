@@ -1,12 +1,9 @@
 [[source]]
-
 url = "https://pypi.python.org/simple"
 verify_ssl = true
 name = "pypi"
 
-
 [dev-packages]
-
 bandit = "*"
 coverage = "*"
 django-debug-toolbar = "*"
@@ -21,9 +18,7 @@ pylint-django = "*"
 pylint-celery = "*"
 safety = "*"
 
-
 [packages]
-
 django = "*"
 celery = {extras = ["redis"]}
 django-model-utils = "*"
@@ -39,8 +34,31 @@ gunicorn = "*"
 whitenoise = "*"
 psutil = "*"
 ipython = "*"
-
+django-meta = "*"
+requests = "*"
+sorl-thumbnail = "*"
+python-memcached = "*"
+pillow = "*"
+djangorestframework = "*"
+django-watson = "*"
+django-tinymce = "*"
+django-threadedcomments = "*"
+django-tagging = "*"
+django-star-ratings = "*"
+django-select2 = "*"
+django-mptt-admin = "*"
+django-mptt = "*"
+django-fluent-comments = "*"
+django-filter = "*"
+django-filebrowser-no-grappelli = "*"
+django-extensions = "*"
+django-crispy-forms = "*"
+django-cookie-law = "*"
+django-contrib-comments = "*"
+django-cachalot = "*"
+django-bootstrap-breadcrumbs = "*"
+django-appconf = "*"
+django-admin-tools = "*"
 
 [requires]
-
-python_version = "3.6"
+python_version = "3.7"
