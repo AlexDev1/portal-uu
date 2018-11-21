@@ -1,1 +1,12 @@
 from .local_base import *  # noqa
+
+
+from dj_database_url import parse as db_url
+
+DATABASES = {
+    'default': config(
+        'DATABASE_URL',
+        default='',
+        cast=db_url
+    )
+}
