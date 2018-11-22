@@ -1,9 +1,11 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
+
 from filebrowser.fields import FileBrowseField
-from model_utils.fields import AutoCreatedField, AutoLastModifiedField
-from tinymce import models as tinymce_models
 from meta.models import ModelMeta
+from model_utils.fields import AutoCreatedField, AutoLastModifiedField
+from taggit.managers import TaggableManager
+from tinymce import models as tinymce_models
 
 from common.utils.utils import unique_slug
 
@@ -22,6 +24,9 @@ class VisibleModel(models.Model):
     """ Абстрактная модель для публикации на сайте"""
     visible = models.BooleanField('Показывать на сайте?', default=False, db_index=True,
                                   help_text='Статус чернеовика')
+
+    class Meta:
+        abstract = True
 
 
 class IndexedTimeStampedModel(models.Model):
@@ -48,6 +53,9 @@ class SeoFieldsModel(models.Model):
 
 
 class BaseContentModel(ModelMeta, VisibleModel, IndexedTimeStampedModel, SeoFieldsModel):
+    """
+    Базовая абстрактная модель для моделей с контентом
+    """
     name = models.CharField('Заголовок', max_length=255)
     description = models.TextField('Краткое описание')
     content = tinymce_models.HTMLField('Content')
@@ -60,6 +68,8 @@ class BaseContentModel(ModelMeta, VisibleModel, IndexedTimeStampedModel, SeoFiel
 
     publish = BaseVisibleManager()
     objects = models.Manager()
+
+    tags = TaggableManager()
 
     def __str__(self):
         return self.name

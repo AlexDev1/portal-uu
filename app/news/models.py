@@ -1,17 +1,12 @@
+from datetime import datetime
+
 from django.db import models
 from django.utils.safestring import mark_safe
+
 from filebrowser.fields import FileBrowseField
-from tagging.registry import register
 
 from common.models import BaseContentModel
 from users.models import User
-
-
-class WidgetTags(models.Model):
-    name = models.CharField(max_length=50)
-
-
-register(WidgetTags)
 
 
 class CommercialNewsType(models.Model):
@@ -30,7 +25,8 @@ class CommercialNewsType(models.Model):
 
 class News(BaseContentModel):
     """Новости"""
-
+    dt_mod = models.DateTimeField('Дата пибликации',
+                                  default=datetime.now, db_index=True)
     image = FileBrowseField("Фото", format='image', directory='news',
                             max_length=255,
                             blank=True, null=True, db_index=True)

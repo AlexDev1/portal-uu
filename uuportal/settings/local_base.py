@@ -7,17 +7,11 @@ HOST = 'http://localhost:8000'
 
 SECRET_KEY = 'secret'
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': base_dir_join('db.sqlite3'),
-    }
-}
 
 STATIC_ROOT = base_dir_join('staticfiles')
 STATIC_URL = '/static/'
 
-MEDIA_ROOT = base_dir_join('mediafiles')
+MEDIA_ROOT = '/Users/aleks/storage_media/all_media/portal/media/'
 MEDIA_URL = '/media/'
 
 DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
