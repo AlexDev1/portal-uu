@@ -1,0 +1,275 @@
+{% extends 'polo/layouts/__base_no_banner.html' %}
+{% load fb_versions %}
+{% load thumbnail %}
+{% load static %}
+{% block extrahead %}
+{% endblock extrahead %}
+{% block content %}
+    <section class="no-padding">
+        <div id="slider-carousel" class="boxed-slider">
+            {% for rotator in rotator_list %}
+                <div style="background-image:url('{{ rotator.picture.url }}');" class="owl-bg-img">
+                    <div class="background-overlay-one"></div>
+                    <div class="container-fullscreen">
+                        <div class="text-middle">
+                            <div class="container">
+                                <div class="text-center text-light slider-content">
+                                    {#									<h6>{{ rotator.name_rotator }}</h6>#}
+                                    <h2 class="text-uppercase text-medium">{{ rotator.name_rotator }}</h2>
+                                    <p class="lead">{{ rotator.text|striptags|truncatechars:200 }}</p>
+                                    <a class="button red border rounded transparent" href="{{ rotator.link }}">Подробнее</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="heading heading-center">
+                <h2>Образование, воспитание и всестороннее развитие подрастающего поколения</h2>
+{#                <p>Образование, воспитание и всестороннее развитие подрастающего поколения</p>#}
+            </div>
+
+            <div class="row">
+                <div class="col-md-4" data-animation="fadeInUp" data-animation-delay="0">
+                    <div class="icon-box effect medium border small">
+                        <div class="icon">
+                            <a href="{% url 'testing' %}"><i class="icon-iconmoon icon-pencil"></i></a>
+                        </div>
+                        <h3>ЕГЭ и ГИА</h3>
+                        <p>Подготовка ЕГЭ и ГИА онлайн: решать тесты с баллами, демоверсии, ответы и решения к вопросом ЕГЭ и ГИА</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-animation="fadeInUp" data-animation-delay="200">
+                    <div class="icon-box effect medium border small">
+                        <div class="icon">
+                            <a href="{% url 'certif' %}"><i class="icon-iconmoon icon-quill"></i></a>
+                        </div>
+                        <h3>Публикация материалов</h3>
+                        <p>Хотите поделиться опытом или, наоборот, поискать идеи среди разработок коллег? </p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-animation="fadeInUp" data-animation-delay="400">
+                    <div class="icon-box effect medium border small">
+                        <div class="icon">
+                            <a href="{% url 'library_journal' %}"><i class="icon-iconmoon icon-book"></i></a>
+                        </div>
+                        <h3>Электронный журнал</h3>
+                        <p>Хотите опубликовать свою работу в журнале? Публикация позволит Вам не только поделиться опытом, но и повысить свой статус!</p>
+                    </div>
+                </div>
+
+                <div class="col-md-4" data-animation="fadeInUp" data-animation-delay="600">
+                    <div class="icon-box effect medium border small">
+                        <div class="icon">
+                            <a href="{% url 'contest_index' %}"><i class="icon-iconmoon icon-images"></i></a>
+                        </div>
+                        <h3>Конкурсы</h3>
+                        <p>Конкурсы – это шанс поделиться опытом и проверить свои силы, это соревнование и признание,</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-animation="fadeInUp" data-animation-delay="800">
+                    <div class="icon-box effect medium border small">
+                        <div class="icon">
+                            <a href="{% url 'blog:blog' %}"><i class="icon-iconmoon icon-bubbles"></i></a>
+                        </div>
+                        <h3>Блог</h3>
+                        <p>Статьи об образовании, студенческой жизнии, учебе, науке, и много другое.</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-animation="fadeInUp" data-animation-delay="1000">
+                    <div class="icon-box effect medium border small">
+                        <div class="icon">
+                            <a href="http://siteedu.ru"><i class="icon-iconmoon icon-display"></i></a>
+                        </div>
+                        <h3>Сайты образовательных учреждений</h3>
+                        <p>Предоставить качественный сервис по созданию сайтов образовательных организаций на территории РФ.</p>
+                    </div>
+                </div>
+
+                <div class="col-md-4" data-animation="fadeInUp" data-animation-delay="1200">
+                    <div class="icon-box effect medium border small">
+                        <div class="icon">
+                            <a href="http://educatory.ru"><i class="icon-iconmoon icon-profile"></i></a>
+                        </div>
+                        <h3>Личные страницы педагогов</h3>
+                        <p>Создание личного сайта-портфолио для педагога на educatory.ru .</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-animation="fadeInUp" data-animation-delay="1400">
+                    <div class="icon-box effect medium border small">
+                        <div class="icon">
+                            <a href="{% url 'univer_applicants' %}"><i class="icon-iconmoon icon-location"></i></a>
+                        </div>
+                        <h3>Информация для абитуриентов</h3>
+                        <p>Информация для абитуриентов, поступающих в учебные заведения. Специальности и профессии, просмотр специальностей по предметам ЕГЭ</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-animation="fadeInUp" data-animation-delay="1600">
+                    <div class="icon-box effect medium border small">
+                        <div class="icon">
+                            <a href="{% url 'specialty' %}"><i class="icon-iconmoon icon-paint-format"></i></a>
+                        </div>
+                        <h3>Каталог специальностей</h3>
+                        <p>Быстрый поиск на сайте позволяет отыскать нужную специальность вузов и колледжей.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <section class="content background-grey">
+        <div class="container">
+
+            <div class="heading heading text-left">
+                <h2>НАШ БЛОГ</h2>
+                <span class="lead">Расскажем все про образование и не только. Принимаем вопросы на все темы.</span>
+            </div>
+        </div>
+        <div id="blog">
+            <div class="container">
+                <div class="post-content  post-block post-modern post-3-columns post-light-background">
+                    {% for item in tribunes %}
+                        {% include 'blog/_post-item.html' %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="p-b-0">
+        <div class="container">
+            <div class="heading text-left">
+                <h2>Новости образования</h2>
+                <span class="lead">{{ last_news.description|truncatechars:275 }} <a href="{{ last_news.get_absolute_url }}">Подробнее</a> </span>
+            </div>
+        </div>
+        <div class="portfolio">
+            <!-- Portfolio Items -->
+            <div  id="isotope" class="isotope portfolio-items" data-isotope-item-space="0" data-isotope-mode="masonry" data-isotope-col="4" data-isotope-item=".portfolio-item">
+                {% for item in news_list %}
+                    <div class="portfolio-item news-list-items design artwork">
+                        <div class="image-box effect victor">
+                            <img src="{%  version item.image 'news_list_v2' %}" alt="{{ item.name }}">
+                            <a href="{{ item.get_absolute_url }}"><div class="image-box-content">
+                                <p>{{ item.description|truncatechars:75 }}</p>
+                                <h3 class="title">{{ item.name }}</h3>
+
+                                <div class="post-date">
+                                    <span class="post-date-day">{{ item.dt_mod|date:"d" }}</span>
+                                    <span class="post-date-month">{{ item.dt_mod|date:"M" }}</span>
+                                    <span class="post-date-year">{{ item.dt_mod|date:"Y" }}</span>
+                                </div>
+                            </div></a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <!-- END: Portfolio Items -->
+
+        </div>
+    </section>
+    {% for item in LandingPage.LandingPage.all %}
+        {% if item.order == 2  and item.typesection == 0%}
+            {% include 'polo/sections/_sectiont-title-text-image.html' %}
+        {% endif %}
+    {% endfor %}
+
+
+    <section class="parallax text-light p-t-150 p-b-150 counters-index background-overlay"  data-stellar-background-ratio="0.6">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+
+                    <div class="text-center">
+                        <div class="icon"><i class="fa fa-3x fa-desktop"></i></div>
+                        <div class="counter"> <span data-speed="3000" data-refresh-interval="11" data-to="1243" data-from="60" data-seperator="true"></span> </div>
+                        <div class="seperator seperator-small"></div>
+                        <p>Сайтов создано</p>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+
+                    <div class="text-center">
+                        <div class="icon"><i class="fa fa-3x fa-pencil-square-o"></i></div>
+                        <div class="counter"> <span data-speed="4500" data-refresh-interval="23" data-to="14825" data-from="100" data-seperator="true"></span> </div>
+                        <div class="seperator seperator-small"></div>
+                        <p>Тестов пройдено (прорешано)</p>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+
+                    <div class="text-center">
+                        <div class="icon"><i class="fa fa-3x fa-file-image-o"></i></div>
+                        <div class="counter"> <span data-speed="3000" data-refresh-interval="12" data-to="1114" data-from="50" data-seperator="true"></span> </div>
+                        <div class="seperator seperator-small"></div>
+                        <p>Сертификатов выдано</p>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+
+                    <div class="text-center">
+                        <div class="icon"><i class="fa fa-3x fa-book"></i></div>
+                        <div class="counter"> <span data-speed="4550" data-refresh-interval="50" data-to="{{ last_cnt_library }}" data-from="48" data-seperator="true"></span> </div>
+                        <div class="seperator seperator-small"></div>
+                        <p>Материалов загружено</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="background-grey p-t-60">
+        <!--Clients Carousel -->
+        <div class="container">
+            <div class="hr-title hr-long center"><abbr>Сайты созданные у нас</abbr> </div>
+            <div class="row clients-carousel carousel-description-clients carousel-description-style ">
+                <div class="col-md-4">
+                    <div class="description">
+                        <h2>Наши клиенты</h2>
+                        Предоставить качественный сервис по созданию сайтов(интернет-представительств) образовательных организаций на территории Российской Федерации. </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="carousel" data-carousel-col="4">
+                        {% for item in school_list %}
+                            <div>
+                                <a href="http://{{ item.get_subdomain.subdomain }}.siteedu.ru/?ref=uu">
+                                    <h4>{{ item.name }}</h4>
+                                    {#                                    <img alt="http://{{ item.get_subdomain.subdomain }}.siteedu.ru/" src="{{ item.get_logo_url }}" width="173" height="129">#}
+
+                                </a>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr class="space">
+        {#        <!--Clients Carousel --> #}
+        {#        <div class="">#}
+        {#            <div class="hr-title hr-long center"><abbr>Сайты созданные у нас</abbr> </div>#}
+        {#            <div class="heading heading-center">#}
+        {#                <h2></h2>#}
+        {#                <span class="lead">Предоставить качественный сервис по созданию сайтов(интернет-представительств) образовательных организаций на территории Российской Федерации.</span>#}
+        {#            </div>#}
+        {#            <div class="carousel clients-carousel owl-carousel owl-theme owl-loaded" data-carousel-col="6" data-carousel-margins="60" data-carousel-col-xs="2">#}
+        {#                {% for item in school_list %}#}
+        {#                <div>#}
+        {#                    <a href="http://{{ item.get_subdomain.subdomain }}.siteedu.ru/">#}
+        {#                        {% thumbnail item.get_logo_url "100x100" crop="center" as im %}#}
+        {#                        <img alt="" src="{{ im.get_logo_url }}" width="{{ im.width }}" height="{{ im.height }}">#}
+        {#                        {% endthumbnail %}#}
+        {#                    </a>#}
+        {#                </div>#}
+        {#                {% endfor %}#}
+        {#            </div>#}
+        {#        </div>#}
+
+    </section>
+    {% include 'polo/widgets/_team.html' %}
+{% endblock content %}
+{% block extra_js %}{% endblock extra_js %}

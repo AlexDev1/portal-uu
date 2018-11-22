@@ -1,0 +1,231 @@
+{% extends 'polo/layouts/__base_paralax_no_banner.html' %}{% load fb_versions %}
+
+{% block seo_title %}{% if request.page.title %}&#169; {{ request.page.title }}{% else %}&#169; 'Библиотека материалов | {% endif %}{% endblock seo_title %}
+
+{% block seo_meta %}
+    {% if request.page.meta %}
+        {{ request.page.meta|safe }}
+    {% endif %}
+{% endblock seo_meta %}
+{% block extrahead %}
+{% endblock extrahead %}
+{% block content %}
+    <section class="fullscreen parallax background-overlay-light background-paralax-library parallax"  data-stellar-background-ratio="0.5">
+        <div class="container-fluid">
+            <div class="container-fullscreen">
+                <div class="text-middle text-center text-dark">
+                    <h3 class="m-b-0">Накопилось много разработок?</h3>
+                    <h2 class="text-lg m-t-0">Библиотека материалов</h2>
+                    <p class="lead">Присылайте свои работы нам, публикуйте полезные для педагогов и учеников материалы,<br>смотрите разработки Ваших коллег, читайте, учите и учитесь сами!</p>
+                    <a class="button button-dark rounded" href="{% url 'library_list' %}">Делитесь своим опытом легко!</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="p-b-10">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="heading heading text-left">
+                        <h2>О разделе</h2>
+                        <span class="lead">Здесь Вы можете найти любые интересующие Вас материалы по разным предметам: учебники, учебные пособия, методическую и учебно-методическую литературу, тексты лекций, практикумы, сборники задач и многое другое.  Для удобства поиска вся библиотека поделена на разделы по предметам, поиск осуществляется и по типу учебной литературы. </span>
+                        <span class="lead">Кроме того, Вы можете добавить в нашу библиотеку свои собственные разработки или посмотреть материалы, уже опубликованные нашими пользователями! Мы публикуем только авторские разработки: каждый поступающий к нам материал проходит обязательную проверку на <strong>уникальность и антиплагиат</strong>.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="background-grey text-dark">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="text-center">
+                        <div class="icon"><i class="fa fa-3x  fa-files-o"></i></div>
+                        <div class="counter"> <span data-speed="100" data-refresh-interval="5" data-to="{{ cnt_uch }}" data-from="0" data-seperator="true"></span> </div>
+                        <div class="seperator seperator-small"></div>
+                        <p>Учебники и практикумы</p>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+
+                    <div class="text-center">
+                        <div class="icon"><i class="fa fa-3x fa-file-text-o"></i></div>
+                        <div class="counter"> <span data-speed="500" data-refresh-interval="15" data-to="{{ cnt_autor }}" data-from="3" data-seperator="true"></span> </div>
+                        <div class="seperator seperator-small"></div>
+                        <p>Авторские материалы</p>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+
+                    <div class="text-center">
+                        <div class="icon"><i class="fa fa-3x fa-file"></i></div>
+                        <div class="counter"> <span data-speed="300" data-refresh-interval="1" data-to="{{ cnt_jurnal }}" data-from="0" data-seperator="true"></span> </div>
+                        <div class="seperator seperator-small"></div>
+                        <p>Электронный журнал</p>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+
+                    <div class="text-center">
+                        <div class="icon"><i class="fa fa-3x fa-users"></i></div>
+                        <div class="counter"> <span data-speed="550" data-refresh-interval="50" data-to="{{ cnt_publisher }}" data-from="48" data-seperator="true"></span> </div>
+                        <div class="seperator seperator-small"></div>
+                        <p>Авторы</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <div class="heading text-left">
+                <h2>Наши разделы:</h2>
+                <span class="lead">Выберите интересующий раздел.</span>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4" data-animation="flipInY" data-animation-delay="0">
+                    <div class="icon-box effect small">
+                        <div class="icon">
+                            <a href="#"><i class="fa fa-plug"></i></a>
+                        </div>
+                        <h3>Учебники и практикумы</h3>
+                        <p>У нас вы можете найти полезные электронные учебники и методические материалы по разным предметам. А также практикумы и сборники задач и упражнений к ним!</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-animation="flipInY" data-animation-delay="200">
+                    <div class="icon-box effect small ">
+                        <div class="icon">
+                            <a href="/library/list/?title=&material_types=8"><i class="fa fa-desktop"></i></a>
+                        </div>
+                        <h3>Авторские материалы</h3>
+                        <p>Хотите поделиться опытом или, наоборот, поискать идеи среди разработок коллег? Тогда заходите в раздел авторских материалов, читайте, знакомьтесь и загружайте свои работы!</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-animation="flipInY" data-animation-delay="400">
+                    <div class="icon-box effect small ">
+                        <div class="icon">
+                            <a href="{% url 'library_journal' %}"><i class="fa fa-cloud"></i></a>
+                        </div>
+                        <h3>Электронный журнал</h3>
+                        <p>Хотите опубликовать свою работу в журнале? Публикация позволит Вам не только поделиться опытом, но и повысить свой опыт!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <div class="jumbotron jumbotron-right jumbotron-fullwidth background-dark text-light">
+        <div class="container">
+            <h3>Хотите опубликовать материал?</h3>
+            <p>Хотите опубликовать свою работу на сайте или в <a class="text-success" title="Российский индекс научного цитирования (РИНЦ)" href="http://elibrary.ru/title_about.asp?id=54815"><strong>электронном журнале(РИНЦ)</strong>?</a> </p>
+            <a class="button large red button-3d effect icon-left" href="{% url 'library_upload' %}"><span><i class="fa fa-upload"></i>Загрузить</span></a> </div>
+    </div>
+    <section class="p-t-30">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h2>Последние выпуски журнала</h2>
+                </div>
+                <div class="col-md-6">
+                    <a class="pull-right" title="Российский индекс научного цитирования (РИНЦ)" href="http://elibrary.ru/title_about.asp?id=54815">
+                        <img class="img-responsive" src="/static/v.3/images/elibrary_logo.gif" alt="eLIBRARY.RU - НАУЧНАЯ ЭЛЕКТРОННАЯ БИБЛИОТЕКА">
+                    </a>
+                </div>
+            </div>
+            <div class="shop">
+                <div class="row">
+                    {% for journal in journals %}
+                        <div class="col-md-4">
+                            <div class="product">
+                                <div class="product-image">
+                                    <a href="{{ MEDIA_URL }}{{ journal.journal }}" target="_blank"><img
+                                            alt="{{ journal.number }}" src="{% version journal.cover 'library_journal' %}">
+                                    </a>
+                                    <a href="{{ MEDIA_URL }}{{ journal.journal }}" target="_blank"><img alt="Читать журнал"
+                                                                                                        src="{% version journal.cover 'library_journal2' %}">
+                                    </a>
+                                    {% if forloop.counter0 == 0 %}<span class="product-new">Новый</span>{% endif %}
+                                    <span class="product-wishlist">
+                                            <a href="#"><i class="fa fa-heart"></i></a>
+                                        </span>
+
+                                    <div class="product-overlay overlay- ">
+                                        <a href="{{ MEDIA_URL }}{{ journal.journal }}" target="_blank">Читать</a>
+                                    </div>
+                                </div>
+
+                                <div class="product-description">
+                                    <div class="product-category"></div>
+                                    <div class="product-title">
+                                        <h3><a href="#">Номер журнала: {{ journal.number }}</a></h3>
+                                    </div>
+                                    <div class="product-price">
+                                        <ins></ins>
+                                    </div>
+                                    {#                                        <div class="product-rate">#}
+                                    {#                                            <i class="fa fa-star"></i>#}
+                                    {#                                            <i class="fa fa-star"></i>#}
+                                    {#                                            <i class="fa fa-star"></i>#}
+                                    {#                                            <i class="fa fa-star"></i>#}
+                                    {#                                            <i class="fa fa-star-half-o"></i>#}
+                                    {#                                        </div>#}
+                                    <div class="product-reviews"><a href="#">{{ journal.relise }}</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="jumbotron jumbotron-fullwidth">
+        <div class="container">
+            <h3>Как опубликоваться: </h3>
+            <p>Хотите опубликовать свою работу на сайте или в  <strong>электронном журнале(РИНЦ)</strong>? </p>
+            <a class="button large black-light button-3d rounded effect icon-left" href="{% url 'certif' %}"><span><i class="fa fa-info-circle"></i>Узнать как</span></a> </div>
+    </div>
+    <div class="seperator p-b-0 p-t-0"><i class="fa fa-chevron-down"></i>
+    </div>
+    <section class="p-t-30">
+        <div class="container">
+            <div class="heading heading-center">
+                <h2>НОВЫЕ ПУБЛИКАЦИИ НА САЙТЕ</h2>
+                <span class="lead">Представляем новые поступления в нашей электронной библиотеке.</span>
+            </div>
+        </div>
+        <div class="container">
+            <!-- Blog post-->
+            <div class="isotope" data-isotope-item-space="2" data-isotope-col="4" data-isotope-item=".post-item">
+                {% for item in ilibrary %}
+                    {% include 'library/_item_library.html' %}
+                {% endfor %}
+            </div>
+            <!-- END: Blog post-->
+        </div>
+    </section>
+    <section id="section4" class="background-grey">
+        <div class="container">
+            <div class="heading heading-center">
+                <h2>НАШ БЛОГ</h2>
+                <span class="lead">Последние статьи из блога!</span>
+            </div>
+        </div>
+        <div id="blog">
+            <div class="container">
+                <!-- Blog post-->
+                <div class="post-content  post-block post-modern post-3-columns post-light-background">
+                    {% for item in newsabout %}
+                        {% include 'blog/_item_blog.html' %}
+                    {% endfor %}
+                </div>
+                <!-- END: Blog post-->
+            </div>
+        </div>
+    </section>
+{% endblock content %}

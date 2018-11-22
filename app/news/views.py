@@ -11,13 +11,12 @@ from django.shortcuts import HttpResponse, redirect, render, get_object_or_404
 from django.utils import timezone
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
-from tagging.views import TaggedObjectList
 
-from app.admin_portal.models import PromoPage
-from website.views import ContextMixinMenu
+
+# from app.admin_portal.models import PromoPage
+from app.core.views import ContextMixinMenu
 from app.news.models import News
-from ..tribune.models import Item as tribuneItems
-from ..tribune.views import GetBlogCarusel
+
 
 
 class NewsList(ListView, ContextMixinMenu):
@@ -25,15 +24,6 @@ class NewsList(ListView, ContextMixinMenu):
     model = News
     template_name = 'news/news_list_new.html'
     paginate_by = 10
-
-    # pages_forward = 2
-    # page_slice = None
-
-    # @method_decorator(csrf_exempt)
-    # def dispatch(self, request, *args, **kwargs):
-    #     self.page_slice = get_paginator_slice(request, self.paginate_by,
-    #                                           self.pages_forward)
-    #     return super(NewsList, self).dispatch(request, *args, **kwargs)
 
     def get_queryset(self, **kwargs):
         '''

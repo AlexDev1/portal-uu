@@ -1,0 +1,6 @@
+{% load ratings %}
+{% if user.is_authenticated %}
+    {% ratings object icon_height=16 icon_width=16 %}
+{% else %}
+    <a href="/users/login/?next={{ object.get_absolute_url }}">{% ratings object icon_height=16 icon_width=16 %}</a>
+{% endif %}

@@ -1,0 +1,247 @@
+{% load mptt_tags %}
+<div class="navbar-collapse collapse main-menu-collapse navigation-wrap">
+    <div class="container">
+        <nav id="mainMenu" class="main-menu mega-menu">
+            <ul class="main-menu nav nav-pills">
+                <li><a href="/"><i class="fa fa-home"></i></a>
+                </li>
+                <li><a href="{% url 'app-news:news' %}">Новости</a></li>
+                <li class="dropdown mega-menu-item"> <a href="{% url 'testing' %}">Образование<i class="fa fa-angle-down"></i> </a>
+                    <ul class="dropdown-menu">
+                        <li class="mega-menu-content mega-menu-img">
+                            <div class="row">
+                                <ul>
+                                    {% recursetree menu_edu %}
+                                        {% if node.active and node.is_menu %}
+                                            <div class="{% if not node.parent %}col-md-3{% else %}col-md-12{% endif %}">
+                                                {% if not node.parent %}<ul>
+                                                    <li class="mega-menu-title">{{ node.name }}</li>
+                                                </ul>{% endif %}
+                                                {{ children }}
+                                                 {% if node.parent %}<a href={{ node.get_absolute_url }}>{{ node.name }}</a>{% endif %}
+{#                                                {{ children }}#}
+                                            </div>
+                                        {% endif %}
+                                    {% endrecursetree %}
+                                    {#                                <ul>#}
+                                    {#                                    {% recursetree menu_edu %}#}
+                                    {#                                        <li>#}
+                                    {#                                            {{ node.name }}#}
+                                    {#                                            {% if not node.is_leaf_node %}#}
+                                    {#                                                <ul>#}
+                                    {#                                                    {{ children }}#}
+                                    {#                                                </ul>#}
+                                    {#                                            {% endif %}#}
+                                    {#                                        </li>#}
+                                    {#                                    {% endrecursetree %}#}
+                                    {#                                </ul>#}
+                                    <div class="col-md-3">
+                                        <ul>
+                                            <li class="mega-menu-title">Абитуриенту</li>
+                                        </ul>
+                                        <div class="col-md-12">
+                                            <ul>
+                                                <li> <a href="{% url 'all_suzs' %}">Каталог колледжей</a> </li>
+                                                <li> <a href="{% url 'list_univers' %}">Каталог ВУЗов</a> </li>
+                                                <li> <a href="{% url 'specialty' %}">Специальности</a> </li>
+                                                <li><a href="{% url 'profession_group_list' %}">Все профессии</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <ul>
+                                            <li class="mega-menu-title">Дополнительно</li>
+                                            <li> <a href="{% url 'specialty_ege' %}">Выбор специальности по ЕГЭ</a> </li>
+                                            <li> <a href="{% url 'qualification_list_detail' %}"><i class="fa fa-graduation-cap"></i> Ступени в образовании</a> </li>
+                                            <li> <a href="{% url 'CalendarUniver' %}"><i class="fa fa-calendar  "></i>Календарь Абитуриента</a> </li>
+                                            <li> <a  href="{% url 'univer_openDayuniver' %}"><i class="fa fa-info-circle leftNavIcon "></i>Дни открытых дверей </a> </li>
+                                            <li> <a href="/univer/benefits/"><i class="fa fa-language leftNavIcon "></i>Льготы при поступлении</a></li>
+                                            <li> <a href="/univer/Terms-and-Conditions/"><i class="fa fa-street-view leftNavIcon "></i>Общие правила и условия поступления</a> </li>
+                                        </ul>
+                                    </div>
+                                </ul>
+                            </div>
+
+
+
+                        </li>
+{#                        <li class="mega-menu-content">#}
+{#                            <strong class="text-primary">Абитуриенту</strong>#}
+{#                            <div class="row">#}
+{#                                <div class="col-md-3">#}
+{#                                    <ul>#}
+{#                                        <li class="mega-menu-title">Учебные заведения</li>#}
+{#                                    </ul>#}
+{#                                    <div class="col-md-12">#}
+{#                                        <ul>#}
+{#                                            <li> <a href="{% url 'all_suzs' %}">Каталог колледжей</a> </li>#}
+{#                                            <li> <a href="{% url 'college_list_city' %}">Колледжи по городам</a> </li>#}
+{#                                            <li> <a href="{% url 'suz_list_section' %}">Колледжи по направлениям</a> </li>#}
+{#                                        </ul>#}
+{#                                    </div>#}
+{#                                    <div class="col-md-10"><div class="text-azure seperator m-t-10 m-b-10 left"><span>ВУЗы</span></div></div>#}
+{#                                    <div class="col-md-12">#}
+{#                                        <ul>#}
+{#                                            <li> <a href="{% url 'list_univers' %}">Каталог ВУЗов</a> </li>#}
+{#                                            <li> <a href="{% url 'univers_list_city' %}">ВУЗы по городам</a> </li>#}
+{#                                            <li> <a href="{% url 'univers_list_section' %}">ВУЗы по направлениям</a> </li>#}
+{#                                        </ul>#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                                <div class="col-md-3">#}
+{#                                    <ul>#}
+{#                                        <li class="mega-menu-title">Специальности</li>#}
+{#                                        <li> <a href="{% url 'specialty' %}">Все специальности</a> </li>#}
+{#                                        <li> <a href="{% url 'specialty_gruop' 'gumanitarnyie-nauki' %}"><i class="fa fa-caret-right leftNavIcon"></i>Гуманитарные науки</a> </li>#}
+{#                                        <li>  <a href="{% url 'specialty_gruop' 'zdravoohranenie-i-meditsinskie-nauki-' %}"><i class="fa fa-caret-right leftNavIcon"></i>Медицинские науки</a> </li>#}
+{#                                        <li> <a href="{% url 'specialty_gruop' 'inzhenernoe-delo-i-teh-nauki' %}"><i class="fa fa-caret-right leftNavIcon"></i>Технические науки</a> </li>#}
+{#                                        <li> <a href="{% url 'specialty_gruop' 'obrazovanie-i-pedagogicheskie-nauki' %}"><i class="fa fa-caret-right leftNavIcon"></i>Педагогические науки</a> </li>#}
+{#                                        <li> <a href="{% url 'specialty_gruop' 'matematicheskie-i-estestvennyie-nauki-' %}"><i class="fa fa-caret-right leftNavIcon"></i>Математические науки</a></li>#}
+{#                                    </ul>#}
+{#                                </div>#}
+{#                                <div class="col-md-3">#}
+{#                                    <ul>#}
+{#                                        <li class="mega-menu-title">Профессии</li>#}
+{#                                        <li> <a href="{% url 'profession_group_detail' 'aviatsionnyie-i-morskie-professii' %}"><i class="fa fa-caret-right leftNavIcon"></i>Авиационные и морские</a></li>#}
+{#                                        <li> <a href="{% url 'profession_group_detail' 'voennyie-professii' %}"><i class="fa fa-caret-right leftNavIcon"></i>Военные</a></li>#}
+{#                                        <li> <a href="{% url 'profession_group_detail' 'meditsinskie-professii' %}"><i class="fa fa-caret-right leftNavIcon"></i>Медицинские</a></li>#}
+{#                                        <li> <a href="{% url 'profession_group_detail' 'tvorcheskie-professii' %}"><i class="fa fa-caret-right leftNavIcon"></i>Творческие</a></li>#}
+{#                                        <li> <a href="{% url 'profession_group_detail' 'tehnicheskie-professii' %}"><i class="fa fa-caret-right leftNavIcon"></i>Технические</a> </li>#}
+{#                                        <li> <a href="{% url 'profession_group_detail' 'yuridicheskie-pravoohranitelnyie-mchs-mvd' %}"><i class="fa fa-caret-right leftNavIcon"></i>Юридические</a> </li>#}
+{#                                    </ul>#}
+{#                                </div>#}
+{#                                <div class="col-md-3">#}
+{#                                    <ul>#}
+{#                                        <li class="mega-menu-title">Дополнительно</li>#}
+{#                                        <li> <a href="{% url 'specialty_ege' %}">Выбор специальности по ЕГЭ</a> </li>#}
+{#                                        <li> <a href="{% url 'qualification_list_detail' %}"><i class="fa fa-graduation-cap"></i> Ступени в образовании</a> </li>#}
+{#                                        <li> <a href="{% url 'CalendarUniver' %}"><i class="fa fa-calendar  "></i>Календарь Абитуриента</a> </li>#}
+{#                                        <li> <a  href="{% url 'univer_openDayuniver' %}"><i class="fa fa-info-circle leftNavIcon "></i>Дни открытых дверей </a> </li>#}
+{#                                        <li> <a href="/univer/benefits/"><i class="fa fa-language leftNavIcon "></i>Льготы при поступлении</a></li>#}
+{#                                        <li> <a href="/univer/Terms-and-Conditions/"><i class="fa fa-street-view leftNavIcon "></i>Общие правила и условия поступления</a> </li>#}
+{#                                    </ul>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </li>#}
+                    </ul>
+                </li>
+                {#                <li class="dropdown mega-menu-item"> <a href="{% url 'univer_applicants' %}">Абитуриентам<i class="fa fa-angle-down"></i></a>#}
+                {#                    <ul class="dropdown-menu">#}
+                {#                        <li class="mega-menu-content">#}
+                {#                            <div class="row">#}
+                {#                                <div class="col-md-3">#}
+                {#                                    <ul>#}
+                {#                                        <li class="mega-menu-title">Учебные заведения</li>#}
+                {#                                    </ul>#}
+                {#                                    <div class="col-md-12">#}
+                {#                                        <ul>#}
+                {#                                            <li> <a href="{% url 'all_suzs' %}">Каталог колледжей</a> </li>#}
+                {#                                            <li> <a href="{% url 'college_list_city' %}">Колледжи по городам</a> </li>#}
+                {#                                            <li> <a href="{% url 'suz_list_section' %}">Колледжи по направлениям</a> </li>#}
+                {#                                        </ul>#}
+                {#                                    </div>#}
+                {#                                    <div class="col-md-10"><div class="text-azure seperator m-t-10 m-b-10 left"><span>ВУЗы</span></div></div>#}
+                {#                                    <div class="col-md-12">#}
+                {#                                        <ul>#}
+                {#                                            <li> <a href="{% url 'list_univers' %}">Каталог ВУЗов</a> </li>#}
+                {#                                            <li> <a href="{% url 'univers_list_city' %}">ВУЗы по городам</a> </li>#}
+                {#                                            <li> <a href="{% url 'univers_list_section' %}">ВУЗы по направлениям</a> </li>#}
+                {#                                        </ul>#}
+                {#                                    </div>#}
+                {#                                </div>#}
+                {#                                <div class="col-md-3">#}
+                {#                                    <ul>#}
+                {#                                        <li class="mega-menu-title">Специальности</li>#}
+                {#                                        <li> <a href="{% url 'specialty' %}">Все специальности</a> </li>#}
+                {#                                        <li> <a href="{% url 'specialty_gruop' 'gumanitarnyie-nauki' %}"><i class="fa fa-caret-right leftNavIcon"></i>Гуманитарные науки</a> </li>#}
+                {#                                        <li>  <a href="{% url 'specialty_gruop' 'zdravoohranenie-i-meditsinskie-nauki-' %}"><i class="fa fa-caret-right leftNavIcon"></i>Медицинские науки</a> </li>#}
+                {#                                        <li> <a href="{% url 'specialty_gruop' 'inzhenernoe-delo-i-teh-nauki' %}"><i class="fa fa-caret-right leftNavIcon"></i>Технические науки</a> </li>#}
+                {#                                        <li> <a href="{% url 'specialty_gruop' 'obrazovanie-i-pedagogicheskie-nauki' %}"><i class="fa fa-caret-right leftNavIcon"></i>Педагогические науки</a> </li>#}
+                {#                                        <li> <a href="{% url 'specialty_gruop' 'matematicheskie-i-estestvennyie-nauki-' %}"><i class="fa fa-caret-right leftNavIcon"></i>Математические науки</a></li>#}
+                {#                                    </ul>#}
+                {#                                </div>#}
+                {#                                <div class="col-md-3">#}
+                {#                                    <ul>#}
+                {#                                        <li class="mega-menu-title">Профессии</li>#}
+                {#                                        <li> <a href="{% url 'profession_group_detail' 'aviatsionnyie-i-morskie-professii' %}"><i class="fa fa-caret-right leftNavIcon"></i>Авиационные и морские</a></li>#}
+                {#                                        <li> <a href="{% url 'profession_group_detail' 'voennyie-professii' %}"><i class="fa fa-caret-right leftNavIcon"></i>Военные</a></li>#}
+                {#                                        <li> <a href="{% url 'profession_group_detail' 'meditsinskie-professii' %}"><i class="fa fa-caret-right leftNavIcon"></i>Медицинские</a></li>#}
+                {#                                        <li> <a href="{% url 'profession_group_detail' 'tvorcheskie-professii' %}"><i class="fa fa-caret-right leftNavIcon"></i>Творческие</a></li>#}
+                {#                                        <li> <a href="{% url 'profession_group_detail' 'tehnicheskie-professii' %}"><i class="fa fa-caret-right leftNavIcon"></i>Технические</a> </li>#}
+                {#                                        <li> <a href="{% url 'profession_group_detail' 'yuridicheskie-pravoohranitelnyie-mchs-mvd' %}"><i class="fa fa-caret-right leftNavIcon"></i>Юридические</a> </li>#}
+                {#                                    </ul>#}
+                {#                                </div>#}
+                {#                                <div class="col-md-3">#}
+                {#                                    <ul>#}
+                {#                                        <li class="mega-menu-title">Дополнительно</li>#}
+                {#                                        <li> <a href="{% url 'specialty_ege' %}">Выбор специальности по ЕГЭ</a> </li>#}
+                {#                                        <li> <a href="{% url 'qualification_list_detail' %}"><i class="fa fa-graduation-cap"></i> Ступени в образовании</a> </li>#}
+                {#                                        <li> <a href="{% url 'CalendarUniver' %}"><i class="fa fa-calendar  "></i>Календарь Абитуриента</a> </li>#}
+                {#                                        <li> <a  href="{% url 'univer_openDayuniver' %}"><i class="fa fa-info-circle leftNavIcon "></i>Дни открытых дверей </a> </li>#}
+                {#                                        <li> <a href="/univer/benefits/"><i class="fa fa-language leftNavIcon "></i>Льготы при поступлении</a></li>#}
+                {#                                        <li> <a href="/univer/Terms-and-Conditions/"><i class="fa fa-street-view leftNavIcon "></i>Общие правила и условия поступления</a> </li>#}
+                {#                                    </ul>#}
+                {#                                </div>#}
+                {#                            </div>#}
+                {#                        </li>#}
+                {#                    </ul>#}
+                {#                </li>#}
+                <li class="dropdown"> <a href="{% url 'blog:blog' %}">Наш блог<i class="fa fa-angle-down"></i> </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="{% url 'blog:blog' %}">Все статьи </a>
+                        </li>
+                        {% for item in blog_category %}
+                            <li> <a href="{% url 'tribune_headings' item.slug %}">{{ item.name }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </li>
+                <li class="dropdown"> <a href="{% url 'library_index' %}">Библиотека<i class="fa fa-angle-down"></i></a>
+                    <ul class="dropdown-menu">
+                        {% include 'library/_library_menu_items.html' %}
+                        <li>
+                            <a  href="{% url 'library_upload' %}">
+                                <i class="fa fa-cloud-upload"></i>Загрузить материал
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown"> <a href="#"> Конкурсы <i class="fa fa-angle-down"></i> </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{% url 'contest_index' %}"> Конкурсы </a></li>
+                        {% for item in contest_list_category %}
+                            <li>
+                                <a  href="{% url 'contest_list_category' item.slug %}">{{ item }}</a>
+                            </li>
+                        {% endfor %}
+                        <li><a class="text-primary" href="{% url 'contest_howtotake' %}"> <i class="text-primary fa fa-exclamation-circle"> </i> <span>Как принять участие</span></a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="{% url 'school_index' %}">Д.сады и Школы</a>
+                </li>
+                <li  class="dropdown"> <a href="#"> <i class="fa fa-user"></i> <i class="fa fa-angle-down"></i> </a>
+
+                    <ul class="dropdown-menu pull-right">
+                        {% if request.user.is_authenticated %}
+                            <li> <a href="{% url 'user_detail' request.user.pk %}" class="dropdown-menu-title-only">{{ request.user.first_name }}</a></li>
+                            <li>
+                                <a  href="{% url 'upload_avatar' %}">
+                                    <img width="25" class="img-circle img-thumbnail" src="{{ MEDIA_URL }}{{ request.user.avatar }}" alt="{{ request.user.first_name }} {{ request.user.last_name }}">
+                                    Загрузить аватар
+                                </a>
+                            </li>
+                            <li>
+                                <a  href="{% url 'logout' %}" title="Выйти"><i class="fa fa-sign-out"></i> Выйти</a>
+                            </li>
+                        {% else %}
+                            <li><a href="{% url 'login' %}"><i class="fa  fa-user"></i> Войти </a></li>
+                            <li><a href="{% url 'login' %}"><i class="fa fa-user-plus"></i> Регистрация</a></li>
+                        {% endif %}
+                        <li><a href="{% url 'about' %}"><i class="fa  fa-info"></i> О портале</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>

@@ -2,29 +2,80 @@
 
 <!doctype html>
 <html class="no-js" lang="ru">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>{% block title %}{% endblock %}</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<head {% meta_namespaces %}>
+  {% include "meta/meta.html" %}
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <meta name="author" content="Учисьучись.рф" />
+  {% if not meta.use_title_tag %}<title>{% block meta_title %}{% if request.page.title %}{{ request.page.title }}{% endif %}{% endblock meta_title %}</title>{% endif %}
+  <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,800,700,600|Montserrat:400,500,600,700|Raleway:100,300,600,700,800|Merriweather:300" rel="stylesheet" type="text/css" />
+  <meta name='yandex-verification' content='7f3aca56ea5c479c' />
+  <meta name='yandex-verification' content='55480c2930e82a09' />
+  <meta http-equiv="content-language" content="ru">
+  <!-- Webpack rendered CSS -->
+  {% render_bundle 'main' 'css' %}
+</head>
 
-    <!-- Webpack rendered CSS -->
-    {% render_bundle 'main' 'css' %}
-  </head>
+<body{% block body-class %}{% endblock body-class %}>
+{% cookielaw_banner %}
+{% if not DEBUG %}
+  {% include 'core/yandex_metrika.html' %}
+{% endif %}
+<!-- Wrapper -->
+<header id="header" class="header-fullwidth {% block class-header %}header-transparent header-plain dark{% endblock class-header %}">
+  <div id="header-wrap">
+    <div class="container">
+      {% include '_header.html' %}
+      {% block dots-menu %}
+        <!--Dots Menu -->
+        <nav id="dotsMenu">
+          <ul>
+            <li><a href="#slider"><span>Home</span></a></li>
+            <li><a href="#section2"><span>Our Work</span></a></li>
+            <li><a href="#section4"><span>Services</span></a></li>
+            <li><a href="#section5"><span>Team Members</span></a></li>
+            <li><a href="#section6"><span>Blog</span></a></li>
+            <li><a href="#section7"><span>Contact Us</span></a></li>
+          </ul>
+        </nav>
+        <!--End: Dots Menu -->
+      {% endblock dots-menu %}
+    </div>
+  </div>
 
-  <body>
-    <!-- Body Content -->
-    {% block body %}{% endblock %}
-
-    {% render_bundle 'main' 'js' 'JQUERY' %}
-    <!-- django-js-reverse -->
-    <script src="{% url 'js_reverse' %}" type="text/javascript"></script>
-
-    <!-- Webpack rendered Javascript -->
-    {% render_bundle 'main' 'js' %}
-
-
-    {% block scripts %}{% endblock %}
-  </body>
+</header>
+{% block page-title %}
+  <section id="page-title" {% block page-parallax-image %}data-parallax-image="{% static 'images/fon_uu-1-min.jpg' %}"{% endblock page-parallax-image %} class="{% block page-title-class %}{% endblock page-title-class %}">
+    <div class="container">
+      <div class="breadcrumb fancy">
+        <ul>
+          {% block breadcrumbs %}
+            <li><a href="/"><i class="fa fa-home"></i></a></li>
+            {#                        <li class="active"><a href="#">Video background</a> </li>#}
+          {% endblock breadcrumbs %}
+        </ul>
+      </div>
+      <div class="page-title">
+        <h1>{% block title %}Page title {% endblock title %}</h1>
+        <span>Simple page title with video background</span>
+      </div>
+    </div>
+  </section>
+{% endblock %}
+<div id="wrapper">
+<div  id="react-app">
+  {% block page %}{% endblock page %}
+</div>
+{% block footer %}{% include '_footer.html' %}{% endblock footer %}
+</div>
+<!-- end: Wrapper -->
+<!-- Go to top button -->
+<a id="goToTop"><i class="fa fa-angle-up top-icon"></i><i class="fa fa-angle-up"></i></a>
+{% render_bundle 'main' 'js' 'JQUERY' %}
+<!-- django-js-reverse -->
+<script src="{% url 'js_reverse' %}" type="text/javascript"></script>
+<!-- Webpack rendered Javascript -->
+{% render_bundle 'main' 'js' %}
+{% block scripts %}{% endblock %}
+</body>
 </html>

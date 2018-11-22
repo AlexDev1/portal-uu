@@ -1,0 +1,66 @@
+{% load static compress %}
+{% compress js %}
+    <script src="{% static 'js/jquery.js' %}"></script>
+    <script src="{% static 'js/plugins.js' %}"></script>
+    <script src="{% static 'js/functions.js' %}"></script>
+    <script src="{% static 'js/reconnecting-websocket.min.js' %}"></script>
+    <script src="{% static 'js/plugins/js/jquery.noty.packaged.min.js' %}"></script>
+    <script src="{% static 'fluent_comments/js/ajaxcomments.js' %}"></script>
+{#    <script src="{{ STATIC_URL }}v.3/vendor/jquery/jquery-ui.min.js"></script>#}
+{#    <script src="{{ STATIC_URL }}v.2/js/jquery.formstyler.min.js"></script>#}
+{#    <script src="{{ STATIC_URL }}v.2/js/chosen.jquery.min.js"></script>#}
+{#    <script type="text/javascript" src="{{ STATIC_URL }}fluent_comments/js/ajaxcomments.js"></script>#}
+{#    <script src="{{ STATIC_URL }}v.2/js/modernizr.custom.79639.js"></script>#}
+{#    <script src="{{ STATIC_URL }}v.2/js/bootstrap-rating.min.js"></script>#}
+{#    <script src="{{ STATIC_URL }}v.2/js/draggabilly.pkgd.min.js"></script>#}
+{#    <script src="{{ STATIC_URL }}v.2/js/dragdrop.js"></script>#}
+{#    <script src="{{ STATIC_URL }}v.2/js/prettyCheckable.min.js"></script>#}
+    <script type="text/javascript" src="{% static 'star-ratings/js/dist/star-ratings.min.js' %}"></script>
+{#    <script src="{{ STATIC_URL }}v.3/js/theme-functions.js"></script>#}
+    <script src="{% static 'cookielaw/js/cookielaw.js' %}"></script>
+{#    <script src="{{ STATIC_URL }}v.3/js/custom.js"></script>#}
+{#    {% if not DEBUG %}#}
+{#        <script async>#}
+{#            ChatraID = '9QSKKA75Tn9uapySp';#}
+{#            (function(d, w, c) {#}
+{#                var n = d.getElementsByTagName('script')[0],#}
+{#                    s = d.createElement('script');#}
+{#                w[c] = w[c] || function() {#}
+{#                        (w[c].q = w[c].q || []).push(arguments);#}
+{#                    };#}
+{#                s.async = true;#}
+{#                s.src = (d.location.protocol === 'https:' ? 'https:': 'http:')#}
+{#                    + '//call.chatra.io/chatra.js';#}
+{#                n.parentNode.insertBefore(s, n);#}
+{#            })(document, window, 'Chatra');#}
+{#        </script>#}
+{#    {% endif %}#}
+{#    <script type="text/javascript" async>#}
+{#        function startTime()#}
+{#        {#}
+{#            var tm=new Date();#}
+{#            var day=tm.getDate();#}
+{#            var mn=tm.getMonth()+1;#}
+{#            var y=tm.getFullYear();#}
+{#            var h=tm.getHours();#}
+{#            var m=tm.getMinutes();#}
+{#            var s=tm.getSeconds();#}
+{#            m=checkTime(m);#}
+{#            s=checkTime(s);#}
+{#            document.getElementById('today').innerHTML=day+"/"+mn+"/"+y+" "+h+":"+m+":"+s;#}
+{#            t=setTimeout('startTime()',500);#}
+{#        }#}
+{#        function checkTime(i)#}
+{#        {#}
+{#            if (i<10)#}
+{#            {#}
+{#                i="0" + i;#}
+{#            }#}
+{#            return i;#}
+{#        }#}
+{#    </script>#}
+
+{% endcompress %}
+
+<script src="https://cdn.ravenjs.com/3.22.0/raven.min.js" crossorigin="anonymous"></script>
+<script>Raven.config('https://ab7560118997441fb935563b122235bd@sentry.io/272406').install()</script>

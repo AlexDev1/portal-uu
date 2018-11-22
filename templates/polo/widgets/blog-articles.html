@@ -1,0 +1,14 @@
+{% load pytils_dt %}
+{% if last_blog %}
+<div class="widget clearfix widget-blog-articles">
+    <h4 class="widget-title">Из нашего блога</h4>
+    <ul class="list-posts list-medium">
+        {% for blog in last_blog %}
+        <li>
+            <a href="{{ blog.get_absolute_url }}">{{ blog.name|truncatechars:75 }}</a>
+            <small>{{ blog.date_create|ru_strftime:"%d %B %Y, %A" }}</small>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}

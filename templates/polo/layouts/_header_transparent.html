@@ -1,0 +1,22 @@
+<header id="header" class="header-fullwidth header-transparent  {{ class_header }}">
+    <div id="header-wrap">
+        <div class="container">
+            <div id="logo">
+                <a href="/" class="logo" data-dark-logo="{{ STATIC_URL }}v.3/images/logo_min.png">
+                    <img height="45" src="{{ STATIC_URL }}v.3/images/logo_min.png" alt="Учисьучись.рф">
+                </a>
+            </div>
+            <div class="nav-main-menu-responsive">
+                <button class="lines-button x" type="button" data-toggle="collapse" data-target=".main-menu-collapse">
+                    <span class="lines"></span>
+                </button>
+            </div>
+            <div id="top-search"> <a id="top-search-trigger"><i class="fa fa-search"></i><i class="fa fa-close"></i></a>
+                <form action="{% url 'search_google' %}" method="get">
+                    <input type="text" name="q" class="form-control" value="" placeholder="Начните вводить текст и нажмите Enter ">
+                </form>
+            </div>
+            {% include 'polo/layouts/__nav.html' %}
+        </div>
+    </div>
+</header>

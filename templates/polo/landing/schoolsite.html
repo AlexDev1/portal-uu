@@ -1,0 +1,287 @@
+{% extends 'polo/layouts/__base_paralax_no_banner.html' %}
+
+{% block seo_title %}{% if request.page.title %}&#169; {{ request.page.title }}{% else %}&#169; 'Библиотека материалов | {% endif %}{% endblock seo_title %}
+
+{% block seo_meta %}
+    {% if request.page.meta %}
+        {{ request.page.meta|safe }}
+    {% endif %}
+{% endblock seo_meta %}
+{% block extrahead %}
+{% endblock extrahead %}
+{% block content %}
+        <div id="slider" class="inspiro-slider" data-height-xs="360">
+            {% for iteminfo in schoolitemsinfo %}
+                {% if not forloop.counter|divisibleby:"2" %}
+                    <!-- Slide 1 -->
+                    <div class="slide background-overlay-gradient" style="background-image:url('{{ iteminfo.img.url }}');">
+                        <div class="container">
+                            <div class="slide-captions text-left text-light">
+                                <!-- Captions -->
+                                <span class="strong"><a href="#" class="business"><span class="business">Наши услуги</span></a>
+                                </span>
+                                <h1>{{ iteminfo.title }}</h1>
+                                <span class="btn-label"> {{ iteminfo.more|safe|truncatechars_html:75 }}</span>
+                                <a type="button" href="http://demo.siteedu.ru" class="btn btn-primary">Демо</a>
+                                <!-- End: Captions -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END: Slide 1 -->
+                {% else %}
+                    <!-- Slide 2 -->
+                    <div class="slide background-overlay-gradient" style="background-image:url('{{ iteminfo.img.url }}');">
+                        <div class="container">
+                            <div class="slide-captions text-right text-light">
+                                <!-- Captions -->
+                                <span class="strong"><a href="#" class="business"><span class="business">Наши услуги</span></a>
+                                </span>
+                                <h1>{{ iteminfo.title }}</h1>
+                                <span class="btn-label"> {{ iteminfo.more|safe|truncatechars_html:75 }}</span>
+                                <a type="button" href="http://demo.siteedu.ru/?ref=uu" class="btn btn-primary">Демо</a>
+                                <!-- End: Captions -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END: Slide 2 -->
+                {% endif %}
+            {% endfor %}
+        </div>
+        <section>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-5 col-sm-12">
+                        <h4>Наш ресурс предназначен для учреждений образования, у которых еще нет своего интернет-сайта, либо он есть, но уже не соответствует современным требованиям и запросам.</h4>
+                        <h2 class="m-b-20">ОФИЦИАЛЬНЫЙ САЙТ</h2>
+                        {{ text.text|safe }}
+                        <a href="https://siteedu.ru/?ref=uu" class="btn btn-dark btn-outline btn-rounded">СОЗДАТЬ САЙТ</a>
+                    </div>
+
+                    <div class="col-md-6 col-md-offset-1 m-t-40">
+                        <div class="row">
+                            <!-- features box -->
+                            <div class="col-md-6">
+                                <h4>ПОЛНОСТЬЮ ОТЗЫВЧИВЫЙ</h4>
+                                <p>Мобильная версия сайта и панели управления сайтом.
+                                    </p>
+                            </div>
+                            <!-- End: features box -->
+
+                            <!-- features box -->
+                            <div class="col-md-6">
+                                <h4>СТРУКТУРА САЙТА</h4>
+                                <p>Уникальная структура сайта, все разделы уже созданы! Вам остается только их заполнить, как простую анкету.</p>
+                            </div>
+                            <!-- End: features box -->
+
+                            <!-- features box -->
+                            <div class="col-md-6">
+                                <h4>СЕРВЕРА В РОССИИ</h4>
+                                <p>Сервера и оборудование сервиса находятся на территории РФ. </p>
+                            </div>
+                            <!-- End: features box --><!-- features box -->
+                            <div class="col-md-6">
+                                <h4>БЕСПЛАТНЫЙ ДОМЕН</h4>
+                                <p>Доменное имя третьего уровня, на базе siteedu.ru предоставляется <strong class="color">БЕСПЛАТНО</strong>.</p>
+                            </div>
+                            <!-- End: features box -->
+                             <!-- End: features box --><!-- features box -->
+                            <div class="col-md-6">
+                                <h4>ОПЛАТА</h4>
+                                <p>Доступна оплата как от юридического лица, так и от физического.</p>
+                            </div>
+                            <!-- End: features box -->
+                        </div>
+                    </div>
+                    <!-- end features box -->
+                </div>
+            </div>
+        </section>
+        <section class="background-grey text-center">
+            <div class="container">
+                <div class="col-md-9">
+                    <h3>Как должен выглядеть сайт? Посмотрите пример сайта </h3></div>
+                <div class="col-md-3"><a type="button" href="http://demo.siteedu.ru/?ref=uu" class="btn btn-default btn-rounded">Демо - сайт</a> </div>
+            </div>
+        </section>
+        <section>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-10 center text-center">
+                        <h4 class="m-b-10">Узнать больше</h4>
+                        <h2>О нашей компании</h2>
+                        <p class="lead m-b-60">Мы готовы вам предоставить качественный сервис по созданию сайтов (интернет-представительств) образовательных организаций на территории Российской Федерации.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <h4 class="m-b-20">Наши технологии</h4>
+
+                        <div class="progress-bar-container title-up small color">
+                            <div class="progress-bar" data-percent="100" data-delay="0" data-type="%">
+                                <div class="progress-title">HTML5</div>
+                            </div>
+                        </div>
+
+                        <div class="progress-bar-container title-up small color">
+                            <div class="progress-bar" data-percent="94" data-delay="100" data-type="%">
+                                <div class="progress-title">CSS3</div>
+                            </div>
+                        </div>
+
+                        <div class="progress-bar-container title-up small color">
+                            <div class="progress-bar" data-percent="89" data-delay="200" data-type="%">
+                                <div class="progress-title">jQUERY</div>
+                            </div>
+                        </div>
+
+                        <div class="progress-bar-container title-up small color">
+                            <div class="progress-bar" data-percent="78" data-delay="300" data-type="%">
+                                <div class="progress-title">PostgreSQL</div>
+                            </div>
+                        </div>
+
+                        <div class="progress-bar-container title-up small color">
+                            <div class="progress-bar" data-percent="75" data-delay="400" data-type="%">
+                                <div class="progress-title">PYTHON</div>
+                            </div>
+                        </div>
+                        <p class="lead">Страницы сайта имеют макро-разметку согласно "Методические рекомендации представления".</p>
+                    </div>
+                    <div class="col-md-4">
+                        <h4 class="m-b-20">Лучшие услуги</h4>
+                        <div class="accordion fancy radius clean">
+                            <div class="ac-item ac-active">
+                                <h5 class="ac-title"><i class="fa fa-university"></i>СООТВЕТСТВУЕТ ПРИКАЗУ</h5>
+                                <div class="ac-content ac-active">Все требуемые разделы выполнены с соблюдением приказа №785 Рособрнадзора.
+                                    <br />
+{#                                    <br /> Fusce id mi diam, Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora#}
+                                </div>
+                            </div>
+                            <div class="ac-item">
+                                <h5 class="ac-title"><i class="fa fa-database"></i>РЕЗЕРВНАЯ КОПИЯ</h5>
+                                <div class="ac-content">Ежедневная резервная копия всех сайтов на три независимых сервера.
+                                    <br />
+{#                                    <br /> Fusce id mi diam, Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora#}
+                                    </div>
+                            </div>
+                            <div class="ac-item">
+                                <h5 class="ac-title"><i class="fa fa-life-ring"></i>ТЕХПОДДЕРЖКА</h5>
+                                <div class="ac-content">Техническая поддержка  в панели управления работает 24 часа в сутки.
+                                    <br />
+{#                                    <br /> Fusce id mi diam, Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet#}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        {% include 'polo/widgets/blog-articles.v.2.html' %}
+                    </div>
+
+
+                </div>
+            </div>
+        </section>
+        <section class="p-t-150 p-b-200" style="background-image:url(/static/v.3/homepages/branding/images/background-4.png); background-position:71% 22%;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h2 class="m-b-10">Наши контакты</h2>
+                                <p class="lead">Мы работаем со всеми субъектами РФ</p>
+                            </div>
+                            <div class="col-md-6 m-b-30">
+                                <address>
+								<strong>Адрес:</strong><br>
+								620023, Екатеринбург, <br>
+                                ул. Патриотов д.6 к.2620023<br>
+							</address>
+                                <abbr><strong>Телефон:</strong></abbr> 8 800-222-05-11
+                                <br>
+                                <abbr><strong>Email:</strong></abbr> info@sp-corp.ru
+                            </div>
+{#                            <div class="col-md-6 m-b-30">#}
+{#                                <address>#}
+{#								<strong>Headquarters:</strong><br>#}
+{#								795 Folsom Ave, Suite 600<br>#}
+{#								San Francisco, CA 94107<br>#}
+{#							</address>#}
+{#                                <abbr><strong>Phone:</strong></abbr> (+1) 1234 56789#}
+{#                                <br>#}
+{#                                <abbr><strong>Fax:</strong></abbr> (+1) 12 3456 78910#}
+{#                                <br>#}
+{#                                <abbr><strong>Email:</strong></abbr> info@inspiro-media.com#}
+{#                            </div>#}
+                            <div class="col-md-12">
+                                <h4>Мы в соцсетях</h4>
+                                <div class="social-icons social-icons-light social-icons-colored-hover">
+                                    <ul>
+                                        <li class="social-facebook"><a href="http://vk.com/uchisuchis"><i class="fa fa-vk"></i></a></li>
+                                        <li class="social-facebook"><a href="https://www.facebook.com/PodgotovkaKEge2014/"><i class="fa fa-facebook"></i></a></li>
+                                        <li class="social-twitter"><a href="https://twitter.com/UchisUU"><i class="fa fa-twitter"></i></a></li>
+                                        <li class="social-google"><a href="https://plus.google.com/115058656325105913819/posts"><i class="fa fa-google-plus"></i></a></li>
+                                        <li class="social-youtube"><a href="https://www.youtube.com/channel/UCUzJhmQMJvX7OZs9jUffQjg"><i class="fa fa-youtube-play"></i></a></li>
+                                        <li class="social-rss"><a href="{% url 'app-news:news_rss' %}"><i class="fa fa-rss"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-5 col-md-offset-1">
+                        <form id="widget-contact-form" action="{% url 'feedback_add' %}" role="form" method="post">{% csrf_token %}
+                            <div class="row">
+                                <div class="form-group col-sm-6">
+                                    <label for="name">Имя</label>
+                                    <input type="text" aria-required="true" name="name" id="id_name" class="form-control required name" placeholder="Введите ваше имя">
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <label for="email">Email</label>
+                                    <input type="email" aria-required="true" name="email" id="id_email" class="form-control required email" placeholder="Введите ваш Email">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Сообщение</label>
+                                <textarea type="text" name="body" id="id_body" rows="9" class="form-control required" placeholder="Введите ваше сообщение"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="hidden" id="widget-contact-form-antispam" name="widget-contact-form-antispam" value="" />
+                                <button class="btn btn-primary" type="submit" id="form-submit"><i class="fa fa-paper-plane"></i>&nbsp;Отправить сообщение</button>
+                            </div>
+                        </form>
+                        <script type="text/javascript">
+                            jQuery("#widget-contact-form").validate({
+
+                                submitHandler: function(form) {
+
+                                    jQuery(form).ajaxSubmit({
+                                        success: function(text) {
+                                            if (text.response == 'success') {
+                                                $.notify({
+                                                    message: "Мы успешно получили Ваше сообщение и свяжемся с вами как можно скорее."
+                                                }, {
+                                                    type: 'success'
+                                                });
+                                                $(form)[0].reset();
+
+                                            } else {
+                                                $.notify({
+                                                    message: text.message
+                                                }, {
+                                                    type: 'danger'
+                                                });
+                                            }
+                                        }
+                                    });
+                                }
+                            });
+
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </section>
+{% endblock content %}

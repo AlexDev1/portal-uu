@@ -1,0 +1,89 @@
+{% load comments pytils_dt pytils_numeral i18n ratings threadedcomments_tags %}
+{% get_comment_count for object as cnt_comment %}
+{% get_comment_list for object as comment_list %}
+{% get_comment_form for object as form_coment %}
+<a id="scroll-comments"></a>
+<div id="comments -{{ target_object_id }}" data-object-id="{{ target_object_id }}" class="comments {% if not comment_list %} empty{% endif %}">
+    <div class="heading">
+        <h4 class="comments-title">Отзывы</h4>
+    </div>
+    {% if comment_list %}
+    {% for comment in comment_list|fill_tree|annotate_tree %}
+
+        {% ifchanged comment.parent_id %}{% else %}</li>{% endifchanged %}
+        {% if not comment.open and not comment.close %}</li>{% endif %}
+        {% if comment.open %}<ul class="comment-list-wrapper comment {% ifchanged comment.parent_id %}comment-replied{% endifchanged %}">{% endif %}
+    <a href="#" class="pull-left">
+        <img alt="avatar-{{ comment.user }}" src="{{ MEDIA_URL }}{{ comment.user.avatar }}" class="avatar">
+    </a>
+    <li class="comment-wrapper media-body">
+
+        <div class="pull-right">
+            {% if user.is_authenticated %}
+                {% ratings comment icon_height=16 icon_width=16 %}
+            {% else %}
+                <a href="/users/login/?next={{ object.get_absolute_url }}">{% ratings comment icon_height=16 icon_width=16 %}</a>
+            {% endif %}
+        </div>
+        <div{% if preview %} id="comment-preview"{% else %} id="c{{ comment.id }}"{% endif %} class="comment-item">
+            {% if preview %}<h3>{% trans "Предварительный просмотр Ваш комментарий" %}</h3>{% endif %}
+            <h5>
+                {% if comment.url %}<a href="{{ comment.url }}" rel="nofollow">{% endif %}
+                {% if comment.user %}{{ comment.user.get_short_name }}{% else %}{% trans "Анонимный" %}{% endif %}{% comment %}
+              {% endcomment %}{% if comment.url %}</a>{% endif %}</h5>
+            <p class="time">{{ comment.submit_date }}</p>
+
+
+
+            <div class="comment-text">{{ comment.comment|linebreaks }}
+                                    <span class="pull-right">
+                                        {% if user.is_authenticated %}<a href="#c{{ comment.id }}" data-comment-id="{{ comment.id }}" class="comment-reply-link">{% trans "ответить" %}</a>{% else %}<a href="/users/login/?next={{ object.get_absolute_url }}"></a>{% endif %}
+                                    </span>
+            </div>
+            <br>
+        </div>
+        {% for close in comment.close %}</li></ul>{% endfor %}
+    {% endfor %}
+    {% else %}
+        <p class="text-colored">Нет отзывов. Станьте первым! Оставить свой отзыв</p>
+    {% endif %}
+</div>
+<div class="comment-form">
+    <div class="heading">
+        <h4>Оставить отзыв</h4>
+    </div>
+    {% if user.is_authenticated %}
+        {% if user.can_comment %}
+            <form data-ajax-action="{% comment_form_target %}ajax/" method='POST' action="{% comment_form_target %}" data-object-id="{{ object.pk }}" id="comment-form-{{ object.pk }}" class="form-gray-fields">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="comment" class="upper">Ваш отзыв</label>
+                            <textarea aria-required="true" id="comment" placeholder="Введите свой отзыв" rows="9" name="comment" class="form-control required"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group text-center">
+                            <button type="submit" class="btn btn-primary"><i class="fa fa-paper-plane"></i>&nbsp;Оставить отзыв</button>
+                        </div>
+                    </div>
+                </div>
+                {{ form_coment.content_type }}
+                {{ form_coment.object_pk }}
+                {{ form_coment.timestamp }}
+                {{ form_coment.security_hash }}
+                <input type='hidden' name='next' value="{{ object.get_absolute_url }}" />
+                <input id="id_parent" name="parent" type="hidden" value="">
+                <a href="#c0" class="comment-cancel-reply-link hide">Отмена</a>
+            </form>
+        {% else %}
+            <p class="text-danger">Вам запрещено оставлять комменатарий!</p>
+        {% endif %}
+    {% else %}
+        <p class="text-info">Необходимо <a href="/users/login/?next={{ object.get_absolute_url }}">авторизоваться!</a></p>
+    {% endif %}
+
+</div>

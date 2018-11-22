@@ -1,0 +1,1 @@
+{#{% load tagging_tags %}{% if object %}{% tags_for_object object as tag_list  %}{% for tag in tag_list %}{{ tag|cut:"'" }}{% if not forloop.last %}, {% endif %}{% endfor %}{% endif %}#}

@@ -1,0 +1,39 @@
+<div class="widget clearfix widget-newsletter">
+    <form id="widget-subscribe-form-sidebar" action="{% url 'subscriber_add' %}" role="form" method="post" class="form-inline">
+        {% csrf_token %}
+        <h4 class="widget-title">Новостная рассылка</h4>
+        <small>Будь в курсе наших последних новостей!</small>
+        <div class="input-group">
+            <input type="email" aria-required="true" name="email"  class="form-control required email" placeholder="Введите ваш email">
+                                        <span class="input-group-btn">
+                  <button type="submit" id="widget-subscribe-submit-button" class="btn btn-primary"><i class="fa fa-paper-plane"></i></button>
+                  </span> </div>
+    </form>
+    <script type="text/javascript">
+        jQuery("#widget-subscribe-form-sidebar").validate({
+            submitHandler: function(form) {
+                jQuery(form).ajaxSubmit({
+                    dataType: 'json',
+                    success: function (text) {
+                        if (text.response == 'success') {
+                            $.notify({
+                                message: text.message
+                            }, {
+                                type: 'success'
+                            });
+                            $(form)[0].reset();
+
+                        } else {
+                            $.notify({
+                                message: text.message
+                            }, {
+                                type: 'warning'
+                            });
+                        }
+                    }
+                });
+            }
+        });
+
+    </script>
+</div>

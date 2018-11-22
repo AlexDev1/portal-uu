@@ -1,0 +1,206 @@
+{% extends 'polo/layouts/__base_paralax_no_banner.html' %}
+
+{% block seo_title %}{% if request.page.title %}&#169; {{ request.page.title }}{% else %}&#169; Всероссийские конкурсы для педагогов 2016-2017 года {% endif %}{% endblock seo_title %}
+
+{% block seo_meta %}
+    {% if request.page.meta %}
+        {{ request.page.meta|safe }}
+    {% else %}
+        <meta name="description" content="Конкурсы для педагогов – это шанс поделиться опытом и проверить свои силы, это соревнование и признание, это Ваш шанс получить достойную оценку своей работе!">
+        <meta name="keywords" content="Всероссийские конкурсы педагог участвовать получить сертификат">
+    {% endif %}
+{% endblock seo_meta %}
+{% block extrahead %}
+{% endblock extrahead %}
+{% block content %}
+    <!-- SECTION IMAGE FULLSCREEN -->
+    <section class="fullscreen background-overlay-light" data-vide-bg="/static/v.3/homepages/video-background/video/Puzzling/Puzzling" data-vide-options="position: 0% 50%">
+        <div class="container-fluid">
+            <div class="container-fullscreen">
+                <div class="text-middle text-center text-dark">
+                    <i class="fa fa-bullseye"></i>
+                    <h3 class="m-b-0">Международный форум преподавателей</h3>
+                    <h2 class="text-medium m-t-0">Быть победителем просто!</h2>
+                    <p class="lead">Форум educatory - это место для общения профессионалов образовательной отрасли, где каждый может получить дельный совет или поделиться своими методическими разработками</p>
+                    <a class="button button-dark rounded" href="https://educatory.org/ru/communion/">Открыть Форум для педагогов!</a>
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+    <!-- END: SECTION IMAGE FULLSCREEN -->
+
+    <!-- COMPANY -->
+    <section class="p-b-10">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="heading heading text-left">
+                        <h2>Всероссийские конкурсы</h2>
+                        <span class="lead">Теперь вы можете не просто писать конспекты уроков и составлять презентации для проектов, но и получать за них дополнительные поощрения! У нас на портале для Вас открыты несколько категорий всероссийских конкурсов – для дошкольного, школьного и профессионального образования. Заходите, выбирайте интересный конкурс и получайте сертификаты! Результаты конкурсов подводятся <strong>ежедневно</strong>.  </span>
+                        <span class="lead"> Успевайте получить свое первое место!</span>
+                    </div>
+                </div>
+                {#					<div class="col-md-6 m-t-60">#}
+                {#						<div class="progress-bar-container title-up small color">#}
+                {#							<div class="progress-bar" data-percent="100" data-delay="100" data-type="%">#}
+                {#								<div class="progress-title">HTML5</div>#}
+                {#							</div>#}
+                {#						</div>#}
+                {##}
+                {#						<div class="progress-bar-container title-up small color">#}
+                {#							<div class="progress-bar" data-percent="94" data-delay="200" data-type="%">#}
+                {#								<div class="progress-title">CSS3</div>#}
+                {#							</div>#}
+                {#						</div>#}
+                {##}
+                {#						<div class="progress-bar-container title-up small color">#}
+                {#							<div class="progress-bar" data-percent="78" data-delay="300" data-type="%">#}
+                {#								<div class="progress-title">JQUERY</div>#}
+                {#							</div>#}
+                {#						</div>#}
+                {##}
+                {#						<div class="progress-bar-container title-up small color">#}
+                {#							<div class="progress-bar" data-percent="65" data-delay="400" data-type="%">#}
+                {#								<div class="progress-title">MYSQL</div>#}
+                {#							</div>#}
+                {#						</div>#}
+                {#					</div>#}
+            </div>
+        </div>
+    </section>
+    <!-- END: COMPANY -->
+
+    <!-- COUNTERS -->
+    <section class="background-grey text-dark">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+
+                    <div class="text-center">
+                        <div class="icon"><i class="fa fa-3x fa-users"></i></div>
+                        <div class="counter"> <span data-speed="300" data-refresh-interval="1" data-to="{{ cnt_cnts1 }}" data-from="0" data-seperator="true"></span> </div>
+                        <div class="seperator seperator-small"></div>
+                        <p>Дошкольное образование</p>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+
+                    <div class="text-center">
+                        <div class="icon"><i class="fa fa-3x fa-male"></i></div>
+                        <div class="counter"> <span data-speed="450" data-refresh-interval="1" data-to="{{ cnt_cnts1 }}" data-from="0" data-seperator="true"></span> </div>
+                        <div class="seperator seperator-small"></div>
+                        <p>Школьное образование</p>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+
+                    <div class="text-center">
+                        <div class="icon"><i class="fa fa-3x fa-rocket"></i></div>
+                        <div class="counter"> <span data-speed="300" data-refresh-interval="1" data-to="{{ cnt_cnts1 }}" data-from="0" data-seperator="true"></span> </div>
+                        <div class="seperator seperator-small"></div>
+                        <p>Профессиональное образование</p>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+
+                    <div class="text-center">
+                        <div class="icon"><i class="fa fa-3x fa-smile-o"></i></div>
+                        <div class="counter"> <span data-speed="1550" data-refresh-interval="10" data-to="{{ cnt_users }}" data-from="48" data-seperator="true"></span> </div>
+                        <div class="seperator seperator-small"></div>
+                        <p>Всего участников</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- END: COUNTERS -->
+
+    <!-- SERVICES -->
+    <section>
+        <div class="container">
+            <div class="heading text-left">
+                <h2>Категории конкурсов</h2>
+                <span class="lead">Выберете свою категорию для участия в конкурсах</span>
+            </div>
+
+            <div class="row">
+                {% for item in contest_list_category %}
+                    {#                        <li>#}
+                    {#                            <a  href="{% url 'contest_list_category' item.slug %}">{{ item }}</a>#}
+                    {#                        </li>#}
+                    <div class="col-md-4" data-animation="flipInY" data-animation-delay="0">
+                        <div class="icon-box effect small">
+                            <a href="{% url 'contest_list_category' item.slug %}">
+                            <div class="icon">
+                                <i class="fa fa-plug"></i>
+                            </div>
+                            <h3>{{ item }}</h3>
+                            <p>{{ item.description }}</p>
+                                </a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+    </section>
+    <!-- END: SERVICES -->
+    <div class="jumbotron jumbotron-fullwidth">
+        <div class="container">
+            <h3>Как принять участие: </h3>
+            <p>Хотите отправить работу на конкурс прямо сейчас?</p>
+            <a class="button large black-light button-3d rounded effect icon-left" href="{% url 'contest_howtotake' %}"><span><i class="fa fa-info-circle"></i>Узнать как</span></a>
+        </div>
+    </div>
+    <!-- CLIENTS -->
+    <!-- SECTION PARALLAX -->
+    <section class="parallax konkursi_background"  data-stellar-background-ratio="0.3">
+
+        <div class="container container-fullscreen">
+            <div class="row">
+                <div class="text-middle text-center text-dark">
+                    <h3 class="text-dark">Последние работы</h3>
+                    {#                    <a class="button rounded color button-3d effect icon-left" href="{% url 'contest_detail_users' item.category.slug item.slug %}"><span><i class="fa fa-users"></i>Все участники</span></a> </div>#}
+                    <div class="contest-left">
+                        {% include 'contest/contest_list_participants.html' %}
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </section>
+    <!-- END: SECTION PARALLAX -->
+    <!-- CLIENTS -->
+
+    <!-- BLOG -->
+    <section id="section4" class="background-grey">
+        <div class="container">
+
+
+            <div class="heading heading-center">
+                <h2>НАШ БЛОГ</h2>
+                <span class="lead">Последние статьи из нашего блога!</span>
+            </div>
+
+        </div>
+
+        <div id="blog">
+            <div class="container">
+                <!-- Blog post-->
+                <div class="post-content  post-block post-modern post-2-columns post-light-background">
+                    {% for item in newsabout %}
+                        {% include 'blog/_item_blog.html' %}
+                    {% endfor %}
+                </div>
+                <!-- END: Blog post-->
+            </div>
+        </div>
+    </section>
+    <!-- END: BLOG -->
+{% endblock content %}

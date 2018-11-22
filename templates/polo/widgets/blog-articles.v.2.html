@@ -1,0 +1,17 @@
+{% load pytils_dt %}
+{% load thumbnail %}
+{% if last_blog %}
+<h4 class="m-b-20">Из нашего блога</h4>
+<div class="post-thumbnail-list">
+    {% for item in last_blog  %}
+    <div class="post-thumbnail-entry">
+        {% thumbnail item.image '60x60' crop="center" as im %}<img src="{{ im.url }}" alt="">{% endthumbnail %}
+        <div class="post-thumbnail-content">
+            <h4><a href="{{ item.get_absolute_url }}">{{ item.name }}</a></h4>
+            <span class="post-date"><i class="fa fa-clock-o"></i> {{ item.date_create|ru_strftime:"%d %B %Y, %A" }}</span><br/>
+            <span class="post-category"><i class="fa fa-tag"></i> {{ item.heading }}</span>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}

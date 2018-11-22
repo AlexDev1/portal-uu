@@ -1,0 +1,34 @@
+<div id="tabs-003" class="tabs simple justified">
+    <h3>Новые</h3>
+    <ul class="tabs-navigation m-l-0">
+        <li class="active"><a href="#About003">Статьи</a> </li>
+        <li><a href="#Services003">Комментарии</a> </li>
+
+    </ul>
+    <div class="tabs-content p-b-0">
+        <div class="tab-pane active" id="About003">
+            <div class="widget clearfix widget-blog-articles m-b-0">
+                <h4 class="widget-title m-l-10">Новое из блога</h4>
+                <ul class="list-posts list-medium">
+                    {% for item in last_blog %}
+                        <li><a href="{{ item.get_absolute_url }}">{{ item.name|truncatechars:75 }}</a>
+                            <small>{{ item.update_date }}</small>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <div class="tab-pane" id="Services003">
+            <h4 class="widget-title m-l-10">Последние комментарии</h4>
+            <ul class="list-posts list-medium">
+            {% for comment in last_blog_comments %}
+                <li><a href="{{ comment.get_content_object_url }}"><em class="font-weight-100 font-size-14">{{ comment.comment|truncatechars:175 }}</em></a>
+                            <small>{{ comment.user_name }} </small>
+{#                    {{ comment.submit_date|timesince }}#}
+                        </li>
+            {% endfor %}
+            </ul>
+
+        </div>
+    </div>
+</div>

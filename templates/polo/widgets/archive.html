@@ -1,0 +1,21 @@
+{%  if years %}
+<div class="widget clearfix widget-archive">
+    <h4 class="widget-title">Архив новостей</h4>
+    <div class="accordion color">
+        {% for year in years %}
+            <div class="ac-item {% if forloop.counter0 == 0 %}ac-active{% endif %}">
+                <h5 class="ac-title"><i class="fa fa-ellipsis-v"></i>{{ year|date:"Y" }} год</h5>
+                <div class="ac-content">
+                    <ul class="list list-lines">
+                        {% for month in months %}
+                            {% if year|date:"Y" == month|date:"Y" %}
+                                <li><a href="{% url 'app-news:news' %}{{ month|date:'Y/m/' }}">{{ month|date:"F" }}</a></li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}

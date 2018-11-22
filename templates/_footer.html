@@ -1,0 +1,128 @@
+<footer class="background-dark text-grey" id="footer">{% load static %}
+    <div class="footer-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="footer-logo float-left">
+                        <img alt="Логотип учисьучись.рф" src="{% static 'images/logo_min_w.png' %}">
+                    </div>
+                    <p>СВ-ВО о регистрации СМИ ЭЛ № ФС77-52843 от 08 февраля 2013 Учисьучись.рф <label class="label label-info"><a href="{% url 'about' %}">О портале</a></label> <br>
+                        <small>(Выдано Федеральной службой по надзору в сфере связи, информационных технологий и массовых коммуникаций (Роскомнадзор)</small><br>
+                        Возрастная категория: <label class="label label-default">12+</label><br>
+                    </p>
+
+                </div>
+            </div>
+            <div class="seperator seperator-dark seperator-simple"></div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="widget clearfix widget-contact-us">
+                        <h4 class="widget-title">Наши контакты</h4>
+                        <ul class="list-large list-icons">
+                            <li><i class="fa fa-map-marker"></i>
+                                <strong>Адрес:</strong> 620023, Екатеринбург,
+                                <br>ул. Патриотов д.6 к.2
+                            </li>
+                            <li><i class="fa fa-phone"></i><strong>Телефон:</strong> 8 800-222-05-11<br>(звонок по России бесплатный)</li>
+                            <li><i class="fa fa-envelope"></i><strong>Email:</strong> <a
+                                    href="mailto:info@sp-corp.ru">info@sp-corp.ru</a>
+                            </li>
+                            <li><i class="fa fa-clock-o"></i>Понедельник Пятница: <strong>09:00 - 18:00</strong>
+                                <br>Суббота Воскресенье: <strong>Выходной</strong>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="widget clearfix">
+                        <h4 class="widget-title">Наши сервисы</h4>
+                        <ul class="list-check list-medium">
+                            <li>ОФИЦИАЛЬНЫЙ САЙТ ДЛЯ ОБРАЗОВАТЕЛЬНОЙ ОРГАНИЗАЦИИ
+                                <a href="https://siteedu.ru/?ref=uu">https://siteedu.ru/</a>
+                            </li>
+                            <div class="seperator seperator-dark seperator-simple"></div>
+                            <li>
+                                Персональный сайт для педагогов
+                                <a href="https://educatory.org/ru/?ref=uu">https://educatory.ru</a>
+
+                            </li>
+                            <div class="seperator seperator-dark seperator-simple"></div>
+                            <li>
+                                <a href="#">Реклама на наших ресурсах</a>
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+                <div class="col-md-4">
+
+                    <div class="widget clearfix widget-newsletter">
+                        <form id="widget-subscribe-form-foot" action="#" role="form" method="post"
+                              class="form-inline">{% csrf_token %}
+                            <h4 class="widget-title">Новостная рассылка</h4>
+                            <small>Будь в курсе наших последних новостей!</small>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-paper-plane"></i></span>
+                                <input type="email" aria-required="true" name="email"
+                                       class="form-control required email" placeholder="Введите адрес электронной почты">
+                                        <span class="input-group-btn">
+											<button type="submit" id="widget-subscribe-submit-button"
+                                                    class="btn btn-primary">Подписывайся
+                                            </button>
+										</span>
+                            </div>
+                        </form>
+
+                    </div>
+                    <div class="col-md-12 text-center">
+                        <address class="m-b-5">
+                            <strong>Создано</strong><br>
+                            Веб-студией
+                        </address>
+                        <address>
+                            <a class="logo-morkov" href="http://morkovka.site">
+                                <img class="img-responsive" alt="веб-студия Morkovka.Site" src="{% static 'images/LogoMorkovka.png' %}">
+                                Morkovka.Site
+
+                            </a>
+
+                        </address>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="copyright-content">
+        <div class="container">
+            <div class="row">
+                <div class="copyright-text col-md-6"> © 2011-{% now "Y" %}г. <strong>Образование в россии</strong> сайт «УчисьУчись.рф»<br>
+                    <label class="label label-demo"> Полное или частичное копирование материалов разрешено только с разрешения администрации сайта.</label>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="social-icons">
+                        <ul>
+                            <li>
+                        <!--LiveInternet counter--><script type="text/javascript"><!--
+                    document.write("<a href='//www.liveinternet.ru/click' "+
+                    "target=_blank><img src='//counter.yadro.ru/hit?t44.6;r"+
+                    escape(document.referrer)+((typeof(screen)=="undefined")?"":
+                    ";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+                    screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+                    ";"+Math.random()+
+                    "' alt='' title='LiveInternet' "+
+                    "border='0' width='31' height='31'><\/a>")
+                    //--></script><!--/LiveInternet--></li>
+                            <li class="social-facebook"><a href="http://vk.com/uchisuchis"><i class="fa fa-vk"></i></a></li>
+                            <li class="social-facebook"><a href="https://www.facebook.com/groups/uchisuchis/"><i class="fa fa-facebook"></i></a></li>
+                            <li class="social-twitter"><a href="https://twitter.com/UchisUU"><i class="fa fa-twitter"></i></a></li>
+                            <li class="social-google"><a href="https://plus.google.com/115058656325105913819/posts"><i class="fa fa-google-plus"></i></a></li>
+                            <li class="social-youtube"><a href="https://www.youtube.com/channel/UCUzJhmQMJvX7OZs9jUffQjg"><i class="fa fa-youtube-play"></i></a></li>
+                            <li class="social-rss"><a href="#"><i class="fa fa-rss"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>

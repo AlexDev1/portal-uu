@@ -1,0 +1,104 @@
+{% if promo %}
+    {% for pr in promo %}
+        {% if forloop.counter0 == 0 %}
+            <section class="background-blue navbar-fixed-bottom row-fluid hidden-xs p-t-5 p-b-0">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="icon-box effect small clean p-t-5 m-b-5">
+                                <div class="icon">
+                                    <a href="#"><i class="fa {{ pr.icon }}"></i></a>
+                                </div>
+                                <h3>{{ pr.title }}</h3>
+                                <p class="m-b-5">{{ pr.text }}</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="icon-box effect small clean m-b-0">
+                                {% if pr.is_form %}
+                                    <a class="button effect fill-horizontal" data-target="#modal-feedback" data-toggle="modal" href="{{ pr.link_url }}"><span>{{ pr.link_name }}</span></a>
+                                {% else %}
+                                    <a class="button effect fill-horizontal" href="{{ pr.link_url }}"><span>{{ pr.link_name }}</span></a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            {% if pr.is_form %}<div class="modal fade" id="modal-feedback" tabindex="-1" role="modal" aria-labelledby="modal-label-3" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <form id="widget-feedbackform-form-foot" action="{% url 'feedback_add' %}"  role="form" method="post"
+                              class="form-gray-fields">{% csrf_token %}
+                            <div class="modal-header">
+                                <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                                <h4 id="modal-label-3" class="modal-title">Отправить отзыв</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row mb20">
+                                    <div class="col-sm-12">
+                                        <p>Мы заинтересованы в улучшении качества нашей работы. Если у Вас есть предложения, пожелания или претензии, либо если вы нашли ошибки на сайте, пожалуйста, напишите нам. Для нас очень важно узнать ваше мнение.</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+
+
+                                    <div class="col-sm-6 xs-box">
+                                        <div class="form-group">
+                                            {{ FeedbackForm.name }}
+
+                                        </div>
+                                        <div class="form-group">
+                                            {{ FeedbackForm.email }}
+                                        </div>
+
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            {{ FeedbackForm.body }}
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button data-dismiss="modal" class="btn btn-b" type="button">Закрыть</button>
+                                <button class="btn btn-primary" type="submit"><i class="fa fa-paper-plane"> </i> Отправить</button>
+                            </div>
+                        </form>
+                        <script type="text/javascript">
+                            jQuery("#widget-feedbackform-form-foot").validate({
+                                submitHandler: function (form) {
+                                    jQuery(form).ajaxSubmit({
+                                        dataType: 'json',
+                                        success: function (text) {
+                                            if (text.response == 'success') {
+                                                $("#modal-feedback").modal('hide')
+                                                $.notify({
+                                                    message: text.message
+                                                }, {
+                                                    z_index: 10310,
+                                                    type: 'success'
+                                                });
+                                                $(form)[0].reset();
+
+                                            } else {
+                                                display_form_errors(text['response'], form);
+                                                $.notify({
+                                                    message: "Сообщение не отправлено"
+                                                }, {
+                                                    z_index: 10310,
+                                                    type: 'warning'
+                                                });
+                                            }
+                                        }
+                                    });
+                                }
+                            });
+                        </script>
+                    </div>
+                </div>
+            </div>{% endif %}
+        {% endif %}
+    {% endfor %}
+{% endif %}

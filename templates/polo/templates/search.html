@@ -1,0 +1,40 @@
+{% extends 'polo/layouts/__base_no_banner.html'  %}{% load static %}
+{% block seo_title %}Результаты поиска: {{ search }}{% endblock %}
+{% block page_title %}
+    <section id="page-title" class="page-title-parallax page-title-center text-dark" style="background-image:url({% static 'v.3/images/parallax/page-title-parallax.jpg' %});">
+        <div class="container">
+            <div class="page-title col-md-8">
+                <h1>РЕЗУЛЬТАТЫ ПОИСКА</h1>
+            </div>
+            <div class="breadcrumb col-md-4">
+                <ul>
+                    <li><a href="{% url 'index' %}"><i class="fa fa-home"></i></a> </li>
+                    <li class="active"><a href="#">Результаты поиска: {{ search }}</a> </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+{% endblock page_title %}
+
+{% block content %}
+    <section>
+        <div class="container">
+            <form action="{% url 'search_google' %}" method="get">
+                    <input type="text" name="q" class="form-control" value="{{ search }}" placeholder="Начните вводить текст и нажмите Enter ">
+                </form>
+            <script>
+                (function() {
+                    var cx = '010208891798319356796:tz4vg9ryjyi';
+                    var gcse = document.createElement('script');
+                    gcse.type = 'text/javascript';
+                    gcse.async = true;
+                    gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+                    var s = document.getElementsByTagName('script')[0];
+                    s.parentNode.insertBefore(gcse, s);
+                })();
+            </script>
+            <gcse:searchresults-only></gcse:searchresults-only>
+        </div>
+    </section>
+{% endblock content %}
+

@@ -1,0 +1,42 @@
+{% load fb_versions static %}
+{% if banner %}
+    {% if not banner.is_auto %}
+    <div class="block-b2-bg-wrap hidden-sm hidden-xs">
+        <div class="pos-rel">
+            <div class="block-banner-bg">
+                <img class="retina-img" src="{{ banner.image1.url }}" data-size="1366" data-small="{{ banner.image2.url }}" data-big="{{ banner.image1.url }}">
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    <div class="block-b2-bg-wrap z hidden-sm hidden-xs" data-left-over="1691">
+        <div class="container pos-rel">
+            <a class="left-block-trigger" href="#">
+                <img width="100%" src="{% static 'images/icons/animat-search-color.gif' %}" alt="{{ banner.title }}">
+{#                <div class='pin'></div>#}
+                <div class='pulse'></div>
+
+            </a>
+        </div>
+        <div class="pos-rel">
+            <div class="container pos-rel">
+                <div class="left-block">
+                    <div class="inner-content">
+                        {% if banner.image_info %}
+                            <img width="100%" src="{%  version banner.image_info 'bannerbackground_image' %}" class="img-responsive">
+                        {% endif %}
+                        <h4 class="line-height-1-2">{{ banner.title }}</h4>
+                        <div class="text p-0">
+                            {{ banner.text_info|safe|truncatechars_html:150 }}
+                        </div>
+                        {% if banner.link %}
+                            <div class="text-right">
+                                <a href="{% url 'banner_redirect' banner.pk %}" class="button small aqua button-3d effect icon-left"><span><i class="fa fa-eye"></i>Узнать больше</span></a>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endif %}

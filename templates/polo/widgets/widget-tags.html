@@ -1,0 +1,14 @@
+{% load tagging_tags %}
+{% if object %}
+{% tags_for_object object as tag_list  %}
+{% else %}
+    {% tag_cloud_for_model news.News as tag_list with min_count=10  %}
+{% endif %}
+<div class="widget clearfix widget-tags">
+    <h4 class="widget-title">Теги</h4>
+    <div class="tags">
+        {% for tag in tag_list %}
+        <a href="{% url 'app-news:news_tag_detail' tag %}">{{ tag }}</a>
+        {% endfor %}
+    </div>
+</div>

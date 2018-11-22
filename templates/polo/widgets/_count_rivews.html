@@ -1,0 +1,5 @@
+{% load comments %}
+{% load pytils_numeral %}
+{% get_comment_count for object as cnt_rivews %}
+<div class="product-reviews"><a class="scroll-to" href="#scroll-comments">{{ cnt_rivews }} {{ cnt_rivews|choose_plural:"отзыв,отзыва,отзывов"}}</a>
+</div>

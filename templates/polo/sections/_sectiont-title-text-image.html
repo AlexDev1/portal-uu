@@ -1,0 +1,13 @@
+<section class="p-b-0">
+    <div class="container">
+        <div class="heading heading-center m-b-40 button-" data-animation="fadeInUp">
+            <h2>{{ item.title }}</h2>
+            <span class="lead">{{ item.text|safe }}</span>
+        </div>
+        <div class="row" data-animation="fadeInUp">
+            <div class="col-md-12">
+                <img class="img-responsive" src="{{ MEDIA_URL }}{{ item.image }}" alt="{{ item.title }}">
+            </div>
+        </div>
+    </div>
+</section>
