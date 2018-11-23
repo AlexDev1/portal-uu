@@ -41,16 +41,17 @@ baseConfig[1].plugins = [
   new SpritesmithPlugin({
       src: {
         cwd: path.resolve(__dirname, 'assets/images/png/'),
-        glob: '*.png'
+        glob: '*.png',
       },
       target: {
         image: path.resolve(__dirname, 'assets/images/spritesmith-generated/sprite.png'),
-        css: path.resolve(__dirname, 'assets/sass/vendor/spritesmith.scss')
+        css: path.resolve(__dirname, 'assets/sass/vendor/spritesmith.scss'),
       },
-      retina: '@2x'
+      retina: '@2x',
+     logCreatedFiles: true,
   }),
   new BundleTracker({
-    filename: './webpack-stats.json'
+    filename: './webpack-stats.json',
   }),
   new webpack.LoaderOptionsPlugin({
     options: {
