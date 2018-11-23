@@ -40,7 +40,7 @@ baseConfig[1].plugins = [
   new webpack.NoEmitOnErrorsPlugin(),  // don't reload if there is an error
   new SpritesmithPlugin({
       src: {
-        cwd: path.resolve(__dirname, 'assets/images/'),
+        cwd: path.resolve(__dirname, 'assets/images/png/'),
         glob: '*.png'
       },
       target: {

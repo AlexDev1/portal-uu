@@ -1,0 +1,16 @@
+{
+    "showIgnoredRules":true,
+    "debug": true,
+    "sprites": [
+
+        {
+            "padding": 15,
+            "retina": 2,
+            "layout": "left-right",
+            "src": "assets/images/icons@2x",
+            "dest": "build/img/card-images.png",
+            "relative": "../img"
+        }
+
+    ]
+}

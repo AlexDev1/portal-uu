@@ -1,0 +1,15 @@
+/* ----------------------------------------------------------------
+	Cards
+-----------------------------------------------------------------*/
+
+// DELETE VARIABLES
+
+h5.card-title {
+	font-size: 1.3rem;
+	margin-bottom: .25rem !important;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+	color: $color-white;
+	background-color: $color-theme;
+}

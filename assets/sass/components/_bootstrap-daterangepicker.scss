@@ -1,0 +1,26 @@
+
+.daterangepicker {
+
+	 select.monthselect, 
+	 select.yearselect {
+	    padding: 5px 8px !important;
+	    border:0px;
+	    margin-bottom:4px;
+	}
+
+
+	td.in-range {
+		background-color: rgba($color-theme,.05) !important;
+	}
+
+	 td.active:not(.off), 
+	 td.active:hover {
+	    background-color: $color-theme !important;
+	    color: $color-white !important;
+	}
+
+	 .drp-buttons .btn {
+	    padding: 10px 10px;
+	    line-height: 10px;
+	}
+}

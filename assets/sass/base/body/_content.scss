@@ -1,0 +1,225 @@
+$color-white: #fff;
+$light-grey: #eee;
+#page-content {
+    padding: 40px 0 40px 0;
+    
+  /*  > .container > .row {
+        display: block !important;
+    } */
+}
+.page-content-shadow {
+    box-shadow: 0 82px 53px 10px rgba(0, 0, 0, 0.3);
+}
+
+/*--------------------------------------------------------
+     Content
+---------------------------------------------------------*/
+#page-content {
+    > .container,
+    > .container-wide {
+        > .row {
+             flex-direction: row-reverse;
+        }
+    }
+    &.sidebar-right {
+           > .container,
+           > .container-wide {
+            > .row {
+                 flex-direction: row;
+                }
+             } 
+    }
+
+
+    &.sidebar-both {
+        > .container,
+        > .container-wide {
+            > .row {
+                 flex-direction: row;
+                }
+             } 
+    }
+}
+#content {
+    overflow: hidden;
+    padding: 60px 0;
+    position: relative;
+    .container,
+    .container-wide {
+        position: relative;
+    }
+}
+// Content
+.content {
+    padding-left: 25px;
+    margin-bottom: 26px;
+}
+// Sidebar
+.sidebar {
+    padding-right: 25px;
+    &:before {
+        border-style: solid;
+        border-color: #eee;
+        border-width: 0;
+        border-right-width: 1px;
+        content: "";
+        display: block;
+        height: 99999px;
+        position: absolute;
+        right: 0;
+        top: -300px;
+        z-index: -10;
+    }
+    &.sidebar-modern {
+        &:before {
+            background-color: #fbfbfb;
+            width: 3000px;
+        }
+    }
+    &.sidebar-plain {
+        &:before {
+            display: none;
+        }
+    }
+}
+.sidebar-right {
+    .content {
+        padding-left: 15px;
+        padding-right: 25px;
+    }
+    .sidebar {
+        padding-right: 15px;
+        border-right-width: 0;
+        padding-left: 25px;
+        &:before {
+            right: auto;
+            border-right-width: 0;
+            border-left-width: 1px;
+            left: 0;
+        }
+    }
+}
+.sidebar-both {
+    .content {
+        padding-left: 25px;
+        padding-right: 25px;
+        + .sidebar {
+            padding-right: 15px;
+            border-right-width: 0;
+            padding-left: 25px;
+            &:before {
+                right: auto;
+                border-right-width: 0;
+                border-left-width: 1px;
+                left: 0;
+            }
+        }
+    }
+}
+
+
+
+@media (max-width: 991px) {
+
+    #page-content {
+
+    &.sidebar-both {
+        > .container,
+    > .container-wide {
+            > .row {
+                 .content {
+                    order:  -1;
+                 }
+
+                }
+             } 
+    }
+}
+
+    .content,
+    .sidebar {
+        width: 100% !important;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    .sidebar-right .sidebar,
+    .sidebar-right .content,
+    .sidebar-both .content,
+    .sidebar-both .content + .sidebar {
+        padding-right: 15px;
+        padding-left: 15px;
+    }
+    .sidebar-both .sidebar,
+    .sidebar-right .sidebar,
+    .sidebar {
+        &:before {
+            right: 0;
+            border-right-width: 0;
+            border-left-width: 0;
+            left: 0;
+        }
+        .widgets {
+            float: left;
+        }
+    }
+
+    .sidebar-both {
+    .content {
+        + .sidebar {
+            border-right-width: 0;
+            &:before {
+                border-right-width: 0;
+                border-left-width: 0;
+            }
+        }
+    }
+    } 
+}
+
+
+// SIDEBAR MENU 
+.sidebar-menu {
+    border: 1px solid rgba(0, 0, 0, 0.07);
+    border-radius: 2px;
+    margin-top: 30px;
+    padding: 0;
+    ul {
+        list-style: outside none none;
+        margin: 0;
+        padding: 0;
+        li {
+            padding: 10px 20px;
+            margin: 0;
+            border-top: 1px solid rgba(0, 0, 0, 0.07);
+            color: #666;
+            font-family: Roboto, Arial, Tahoma, sans-serif;
+            padding: 10px 20px 10px 18px;
+            -webkit-transition: all 0.2s ease-in-out 0s;
+            transition: all 0.2s ease-in-out 0s;
+            cursor: pointer;
+            &:hover {
+                background: rgba(0, 0, 0, 0.05) !important;
+                color: #606060;
+                padding: 10px 20px 10px 26px;
+            }
+            a {
+                color: #444;
+                display: block;
+            }
+        }
+    }
+    i {
+        margin-right: 12px;
+    }
+    h4,
+    h3 {
+        background-color: #f8f8f8;
+        padding: 14px 18px;
+        margin: 0;
+    }
+}
+@media (max-width:991px) {
+    #page-content {
+        padding: 20px 0 20px 0;
+    }
+}
