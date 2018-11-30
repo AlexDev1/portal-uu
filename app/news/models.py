@@ -32,7 +32,7 @@ class News(BaseContentModel):
                             blank=True, null=True, db_index=True)
     on_main_page = models.BooleanField('На главную', default=False, db_index=True)
 
-    commercial = models.BooleanField('Комерческая новость', default=False, db_index=True)
+    commercial = models.BooleanField('Коммерческая новость', default=False, db_index=True)
 
     show_count = models.IntegerField(
         verbose_name='Количество показов',

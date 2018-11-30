@@ -30,7 +30,9 @@ class VisibleModel(models.Model):
 
 
 class IndexedTimeStampedModel(models.Model):
-    """Абстрактная модель Штампы времени"""
+    """
+    Абстрактная модель Штампы времени
+    """
     created = AutoCreatedField(_('created'), db_index=True)
     modified = AutoLastModifiedField(_('modified'), db_index=True)
 
@@ -39,7 +41,9 @@ class IndexedTimeStampedModel(models.Model):
 
 
 class SeoFieldsModel(models.Model):
-    """Абстрактная модель СЕО-поля для мета-тегов"""
+    """
+    Абстрактная модель СЕО-поля для мета-тегов
+    """
     seo_title = models.CharField('Заголовок(SEO)', null=True,
                                  blank=True, max_length=255,
                                  help_text='* !! НЕ обязательное поле, можно оставить пустым!')
@@ -54,8 +58,16 @@ class SeoFieldsModel(models.Model):
 
 class BaseContentModel(ModelMeta, VisibleModel, IndexedTimeStampedModel, SeoFieldsModel):
     """
-    Базовая абстрактная модель для моделей с контентом
+    Базовая абстрактная модель для моделей с контентом, СЕО-полями и показывать на сайте.
     """
+    TYPE_NEWS = (
+        [1, 'Официально'],
+        [2, 'Видео'],
+        [3, 'Аудио'],
+        [4, 'Наука'],
+        [5, 'Технологии'],
+        [6, 'Lifestyle']
+    )
     name = models.CharField('Заголовок', max_length=255)
     description = models.TextField('Краткое описание')
     content = tinymce_models.HTMLField('Content')
@@ -64,11 +76,13 @@ class BaseContentModel(ModelMeta, VisibleModel, IndexedTimeStampedModel, SeoFiel
     image = FileBrowseField(u"Картинка", format='image', directory='tribune',
                             max_length=255,
                             blank=True, null=True, db_index=True)
-    # tags = TagAutocompleteField(blank=False, verbose_name='Теги')#ToDo Запилить ТЕГИ Select2!!!
+    type = models.PositiveSmallIntegerField('Тип контента', choices=TYPE_NEWS, default=1, db_index=True)
+    source_audio = models.FileField("Аудио-файл", blank=True, null=True, help_text='*.mp3')
+    url_video = models.FileField("Видео с YouTube", blank=True, null=True, help_text='Ссылка на видео с youtube')
 
+    # Managers
     publish = BaseVisibleManager()
     objects = models.Manager()
-
     tags = TaggableManager()
 
     def __str__(self):

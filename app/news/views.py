@@ -1,22 +1,24 @@
 import datetime
-import json
 from datetime import datetime, timedelta
 
-
-from django import forms
 from django.contrib.syndication.views import Feed
-from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponseNotFound
-from django.shortcuts import HttpResponse, redirect, render, get_object_or_404
+from django.shortcuts import get_object_or_404, redirect, render
 from django.utils import timezone
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 
-
 # from app.admin_portal.models import PromoPage
+from rest_framework.generics import ListAPIView
+
 from app.core.views import ContextMixinMenu
 from app.news.models import News
+from app.news.serializers import NewsSerializer
 
+
+class NewsListAPI(ListAPIView):
+    queryset = News.publish.filter(dt_mod__lte=timezone.now(), ).order_by('-dt_mod')
+    serializer_class = NewsSerializer
 
 
 class NewsList(ListView, ContextMixinMenu):
@@ -152,11 +154,11 @@ class LatestNewsFeed(Feed):
         return item.get_absolute_url()
 
 
-class TaggetNews(TaggedObjectList, ContextMixinMenu):
-    template_name = 'news/news_list_tag.html'
-    model = News
-    paginate_by = 25
-    allow_empty = True
+# class TaggetNews(TaggedObjectList, ContextMixinMenu):
+#     template_name = 'news/news_list_tag.html'
+#     model = News
+#     paginate_by = 25
+#     allow_empty = True
 
 
 def news_pk(request, pk):

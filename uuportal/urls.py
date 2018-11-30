@@ -7,7 +7,8 @@ from django.views.generic import TemplateView
 import django_js_reverse.views
 from filebrowser.sites import site
 
-from app.core.views import SearchGoogle, IndexView
+from app.core.views import IndexView, SearchGoogle
+
 
 urlpatterns = [
     path('admin/filebrowser/', site.urls),
@@ -17,7 +18,7 @@ urlpatterns = [
     path('search/', SearchGoogle.as_view(), name='search_google'),
     url(r'^$', IndexView.as_view(), name='home'),
     path('about/', TemplateView.as_view(template_name = 'polo/landing/about.html'), name='about'),
-    # path('', include('app.news.urls', namespace='app-news')),
+    path('', include(('app.news.urls', 'news'), namespace='news')),
     # path('', include('app.testing.urls', namespace='edu')),
     # path('', include('app.univer.urls')),
     # path('', include('app.college.urls')),
