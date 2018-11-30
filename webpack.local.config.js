@@ -1,10 +1,10 @@
-var autoprefixer = require('autoprefixer');
-var webpack = require('webpack');
-var baseConfig = require('./webpack.base.config');
-var SpritesmithPlugin = require('webpack-spritesmith');
-var BundleTracker = require('webpack-bundle-tracker');
-var path = require('path');
-var nodeModulesDir = path.resolve(__dirname, 'node_modules');
+const autoprefixer = require('autoprefixer');
+const webpack = require('webpack');
+const baseConfig = require('./webpack.base.config');
+const SpritesmithPlugin = require('webpack-spritesmith');
+const BundleTracker = require('webpack-bundle-tracker');
+const path = require('path');
+const nodeModulesDir = path.resolve(__dirname, 'node_modules');
 
 baseConfig[0].mode = 'development'
 baseConfig[1].mode = 'development'
